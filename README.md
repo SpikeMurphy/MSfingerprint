@@ -4,6 +4,8 @@ Automated preprocessing and peptide mass fingerprint (PMF) analysis for MALDI-TO
 
 The project contains two scripts that process MALDI spectra, detect monoisotopic peaks, remove common contaminants, and optionally submit peak lists to protein identification services.
 
+---
+
 ## Scripts
 
 * **MassSpectFPAutoTool for Mascot.R**
@@ -12,6 +14,8 @@ The project contains two scripts that process MALDI spectra, detect monoisotopic
 * **MassSpectFPAutoTool for MS-Fit.R**
   Processes spectra and submits peak lists to **MS-Fit (Protein Prospector)**.
   Optionally performs an additional `.random.concat` search for FDR estimation.
+
+---
 
 ## Requirements
 
@@ -23,6 +27,8 @@ Required R packages (installed automatically if missing):
 * `BiocManager`
 * `MALDIquant`
 * `MALDIquantForeign`
+
+---
 
 ## Workflow
 
@@ -37,6 +43,8 @@ Both scripts perform the following steps:
 7. Export results
 8. Optionally submit search to Mascot or MS-Fit
 
+---
+
 ## How to Run
 
 1. Open the script in **R** or **RStudio**.
@@ -46,8 +54,8 @@ Both scripts perform the following steps:
 2. Run the script.
 
     - In **RStudio**:
-            - Select all code (`Cmd/Ctrl + a`)
-            - Run the script (`Cmd/Ctrl + Shift + Enter`)
+        - Select all code (`Cmd/Ctrl + a`)
+        - Run the script (`Cmd/Ctrl + Shift + Enter`)
 
 3. Select a spectrum file when prompted.
 
@@ -58,6 +66,8 @@ Both scripts perform the following steps:
     - for **Mascot** you need to specify your USERNAME = Name and USEREMAIL = email. The first time you will be sent a mail to verify your mail address.
 
 The script will then process the spectrum(s) automatically.
+
+---
 
 ## Output
 
@@ -72,6 +82,8 @@ Generated files include:
 * Monoisotopic peak list (`.txt`)
 * Processing log (`processing_log.txt`)
 
+---
+
 ## Parameters
 
 Search parameters can be modified directly inside the scripts:
@@ -81,15 +93,33 @@ Search parameters can be modified directly inside the scripts:
 
 Adjust these values to match experimental conditions.
 
+---
+
 ## Notes
 
 * Designed for MALDI-TOF peptide mass fingerprinting.
 * Optimal results are obtained with spectra producing **20–40 monoisotopic peaks**.
 * Contaminant peaks from trypsin autolysis and keratin are automatically removed.
 
+---
+
+## Disclaimer
+
+This software is provided **for educational and research purposes only**.
+
+* No guarantee of correctness or suitability
+* Not intended for clinical, diagnostic, or commercial use
+* Predictions should always be validated independently
+
+Use at your own risk.
+
+---
+
 ## Author
 
 Spike Murphy Müller
+
+---
 
 ## Copyright
 
