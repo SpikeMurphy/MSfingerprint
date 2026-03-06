@@ -93,4 +93,4 @@ Spike Murphy Müller
 
 ## Copyright
 
-© 2025 Spike Murphy Müller · Licensed under the MIT License
+© 2026 Spike Murphy Müller · Licensed under the MIT License

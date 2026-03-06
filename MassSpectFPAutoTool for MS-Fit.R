@@ -6,19 +6,7 @@ SCRIPT_AUTHOR = "Spike Murphy Müller"
 # USER INFO
 # ---------------------------------
 
-# in the MS-FIT FUNCTION update parameters if necessary
-## (available parameters at: https://prospector.ucsf.edu/prospector/cgi-bin/msform.cgi?form=msfitupload)
-## also run .random.concat library search if possible for FDR (false disccovery rate) calculation
-## FDR = hits(library)/hits(library.random.concat)
-# run this script with "command+shift+enter"
-# select the first ms spectrum
-# chose y/n for another spectrum or not
-# when n start processing all chosen files one after the other
-## 1. preprocess
-## 2. try and select peaks and pic monoiotopic peaks with SNR 30, if not 20-40 monoiotopic peaks adjust SNR
-## 3. submit ms-fit search
-## 4. export peak list and png of peaks and monoisotopic peaks
-# at the end export a log file
+# consult the README file at https://github.com/SpikeMurphy/MassSpectFPAutoTool
 
 # ---------------------------------
 # INSTALL LIBRARIES IF NEEDED

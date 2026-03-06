@@ -6,6 +6,7 @@ SCRIPT_AUTHOR = "Spike Murphy Müller"
 # USER INFO
 # ---------------------------------
 
+# consult the README file at https://github.com/SpikeMurphy/MassSpectFPAutoTool
 
 # ---------------------------------
 # INSTALL LIBRARIES IF NEEDED
