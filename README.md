@@ -40,14 +40,20 @@ Both scripts perform the following steps:
 ## How to Run
 
 1. Open the script in **R** or **RStudio**.
+        - for easy file selection, the file should be in the same directory as the spectrum files.
 
 2. Run the script.
+        - In **RStudio**:
+            - Select all code (`Cmd/Ctrl + a`)
+            - Run the script (`Cmd/Ctrl + Shift + Enter`)
 
 3. Select a spectrum file when prompted.
+        - for **Mascot** search, only one file can be selected as the free trial server does not allow batch processing of files. **Please adhere to this restriction even when editing the code.**
 
 4. Choose whether to run the database search.
+        - for **Mascot** you need to specify your USERNAME = Name and USEREMAIL = email. The first time you will be sent a mail to verify your mail address.
 
-The script will then process the spectrum automatically.
+The script will then process the spectrum(s) automatically.
 
 ## Output
 
