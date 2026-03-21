@@ -1,0 +1,10 @@
+citHeader("To cite this package:")
+
+citEntry(
+  entry = "Manual",
+  title = "MassSpectFPAutoTool (msfingerprint): Tools for Automated Peptide Mass Fingerprint Analysis",
+  author = person("Spike Murphy", "Mueller"),
+  year = "2026",
+  note = "R package version 1.0.0",
+  url = "https://github.com/SpikeMurphy/MassSpectFPAutoTool"
+)

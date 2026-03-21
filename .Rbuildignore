@@ -1,0 +1,11 @@
+# folders
+^scripts$
+^assets$
+
+# files
+^LICENSE\.md$
+^.*\.Rproj$
+^\.Rproj\.user$
+^\.gitignore$
+^\.Rhistory$
+^\.RData$

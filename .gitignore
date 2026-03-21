@@ -2,3 +2,7 @@
 *.RData
 *.Rhistory
 *.DS_Store
+
+# folders
+assets/
+.Rproj.user

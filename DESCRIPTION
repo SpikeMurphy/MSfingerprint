@@ -1,0 +1,27 @@
+Package: msfingerprint
+Type: Package
+Title: MassSpectFPAutoTool
+Version: 1.0.0
+Authors@R: 
+    person(
+        "Spike Murphy", 
+        "Müller", 
+        email = "spike.mueller@studium.uni-hamburg.de", 
+        role = c("aut", "cre", "cph"),
+        comment = c(ORCID = "0009-0003-3561-7991")
+    )
+Description: This package provides tools for preprocessing MALDI mass spectrometry data, 
+    detecting and cleaning peaks, removing contaminants such as keratin and trypsin, 
+    generating spectrum plots, and optionally submitting peptide mass fingerprinting 
+    data to Mascot, MS-Fit, and MS-Digest services for automated analysis.
+URL: https://github.com/SpikeMurphy/MassSpectFPAutoTool
+BugReports: https://github.com/SpikeMurphy/MassSpectFPAutoTool/issues
+License: MIT + file LICENSE
+Encoding: UTF-8
+Imports:
+    MALDIquant (>= 1.22.0),
+    MALDIquantForeign (>= 0.14.0),
+      ggplot2 (>= 4.0.0)
+Suggests:
+  testthat (>= 3.0.0)
+Config/testthat/edition: 3

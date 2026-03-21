@@ -1,126 +1,277 @@
-# MassSpectFPAutoTool
+msfingerprint
+================
 
-Automated preprocessing and peptide mass fingerprint (PMF) analysis for MALDI-TOF mass spectrometry data in **R**.
+<!-- README.md is generated from README.Rmd. Please edit that file -->
 
-The project contains two scripts that process MALDI spectra, detect monoisotopic peaks, remove common contaminants, and optionally submit peak lists to protein identification services.
+# msfingerprint
 
----
+<!-- badges: start -->
 
-## Scripts
+<!-- badges: end -->
 
-* **MassSpectFPAutoTool for Mascot.R**
-  Processes spectra and submits peak lists to **Mascot**.
+**msfingerprint** provides an automated workflow for preprocessing MALDI
+mass spectrometry data, detecting and cleaning peaks, removing
+contaminants, and submitting peptide mass fingerprinting (PMF) data to
+external identification tools.
 
-* **MassSpectFPAutoTool for MS-Fit.R**
-  Processes spectra and submits peak lists to **MS-Fit (Protein Prospector)**.
-  Optionally performs an additional `.random.concat` search for FDR estimation.
+The package is designed to streamline analysis pipelines from raw
+spectra to protein identification.
 
----
+------------------------------------------------------------------------
 
-## Requirements
+## Features
 
-* R (recommended ≥ 4.0)
-* Internet connection for database submission
+- Preprocessing of MALDI spectra using `MALDIquant`
 
-Required R packages (installed automatically if missing):
+- Noise reduction, baseline correction, and intensity calibration
 
-* `BiocManager`
-* `MALDIquant`
-* `MALDIquantForeign`
+- Adaptive peak detection based on signal-to-noise ratio
 
----
+- Removal of common contaminants:
 
-## Workflow
+  - Trypsin (planned: other restriction enzymes)
+  - Keratin
+  - Optional tags like GFP, RFP (planned: other common tags)
+  - User specified peaks like other tags or contaminants which can be
+    obtained using `search_msdigest()`
 
-Both scripts perform the following steps:
+- Monoisotopic peak extraction
 
-1. Import MALDI spectrum
-2. Preprocess spectrum
-3. Detect peaks
-4. Remove trypsin and keratin contaminant peaks
-5. Extract monoisotopic peaks
-6. Automatically adjust SNR to obtain ~20–40 peaks
-7. Export results
-8. Optionally submit search to Mascot or MS-Fit
+- Visualization using `ggplot2`
 
----
+- Integration with external tools:
 
-## How to Run
+  - Mascot (PMF search)
+  - MS-Fit (PMF search)
+  - MS-Digest (in silico protein digest and m/z peak calculation)
 
-1. Open the script in **R** or **RStudio**.
+------------------------------------------------------------------------
 
-    - for easy file selection, the file should be in the same directory as the spectrum files.
+## Installation
 
-2. Run the script.
+You can install the development version from GitHub:
 
-    - In **RStudio**:
-        - Select all code (`Cmd/Ctrl + a`)
-        - Run the script (`Cmd/Ctrl + Shift + Enter`)
+``` r
+# install.packages("devtools")
+devtools::install_github("SpikeMurphy/MassSpectFPAutoTool")
+```
 
-3. Select a spectrum file when prompted.
+------------------------------------------------------------------------
 
-    - for **Mascot** search, only one file can be selected as the free trial server does not allow batch processing of files. **Please adhere to this restriction even when editing the code.**
+## Quick Start
 
-4. Choose whether to run the database search.
+### 1. Loading Package
 
-    - for **Mascot** you need to specify your USERNAME = Name and USEREMAIL = email. The first time you will be sent a mail to verify your mail address.
+``` r
+library(msfingerprint)
+```
 
-The script will then process the spectrum(s) automatically.
+### 2. Processing Spectrum
 
----
+``` r
+result <- run_processing(FILE = "~/dir/example.mzML")
+```
+
+### 3. Accessing Results
+
+``` r
+# Monoisotopic peaks
+result$monoisotopic_peaks
+result$monoisotopic_peaks_cleavage
+result$monoisotopic_peaks_keratin
+result$monoisotopic_peaks_tag
+result$monoisotopic_peaks_custom
+
+# Plots
+result$plot_raw
+result$plot_preprocessed
+result$plot_peaks
+result$plot_peaks_mono
+result$plot_peaks_mono_contaminants
+```
+
+### 4. Visualizing Data
+
+``` r
+# Plots
+print(result$plot_raw)
+print(result$plot_preprocessed)
+print(result$plot_peaks)
+print(result$plot_peaks_mono)
+print(result$plot_peaks_mono_contaminants)
+```
+
+### 5. Searching Database
+
+``` r
+peaklist <- result$monoisotopic_peaks$peaks
+
+# Mascot
+search_mascot(
+  PEAKS = peaklist,
+  USERNAME = "Firstname Lastname",
+  USEREMAIL = "example@email.test"
+)
+
+# MS-Fit
+search_msfit(PEAKS = peaklist)
+```
+
+------------------------------------------------------------------------
+
+## Workflow Overview
+
+The main processing pipeline:
+
+1.  Import spectrum (`MALDIquantForeign`)
+2.  Transform intensity
+3.  Smooth signal
+4.  Remove baseline
+5.  Calibrate intensities
+6.  Detect peaks
+7.  Remove contaminants
+8.  Extract monoisotopic peaks
+9.  Generate plots
+10. Perform database search
+
+------------------------------------------------------------------------
+
+## Contaminant Handling
+
+The function `run_processing()` removes known contaminant peaks:
+
+- **Trypsin autolysis peaks**
+
+- **Keratin contamination**
+
+- Tags
+
+  - GFP tag
+
+  - RFP tag
+
+- Custom exclusion list
+
+Tolerance-based matching is used to identify contaminant peaks.
+
+------------------------------------------------------------------------
+
+## External Search Integration
+
+### Mascot
+
+``` r
+search_mascot(
+  PEAKS = result$monoisotopic_peaks$peaks,
+  USERNAME = "Firstname Lastname",
+  USEREMAIL = "example@email.test"
+)
+```
+
+### MS-Fit
+
+``` r
+search_msfit(
+  PEAKS = result$monoisotopic_peaks$peaks
+)
+```
+
+### MS-Digest
+
+``` r
+search_msdigest(
+  SEQUENCE = "MKWVTFISLLFLFSSAYSRGVFRRDAHKSEVAHRFKDLGEENFKALVLIA"
+)
+```
+
+------------------------------------------------------------------------
+
+## Main Functions
+
+| Function | Description |
+|----|----|
+| `run_processing()` | Main preprocessing and peak detection pipeline |
+| `search_mascot()` | Protein identification *Matrix Science* **Mascot** Server |
+| `search_msfit()` | Protein identification via *Protein Prospector* **MS-Fit** Server |
+| `search_msdigest()` | Perform in silico digestion and peaklist calculation |
+
+------------------------------------------------------------------------
 
 ## Output
 
-A folder named **`results`** is created in the input file directory.
+The main function returns:
 
-Generated files include:
+- Clean monoisotopic peaks
+  - Target protein peaks
+  - Restriction enzyme autolysis peaks
+  - Keratin contamination peaks
+  - Custom peaklist matches
+- Multiple `ggplot2` visualizations
+  - Raw spectrum
+  - Preprocessed spectrum
+  - Plot with detected monoisotopic and isotopic peaks for the target
+    protein
+  - Plot with detected monoisotopic peaks for the target protein
+  - Plot with detected monoisotopic peaks for the target protein and the
+    contaminants
 
-* Original spectrum plot
-* Preprocessed spectrum plot
-* Detected peak plot
-* Monoisotopic peak plot
-* Monoisotopic peak list (`.txt`)
-* Processing log (`processing_log.txt`)
+``` r
+file <- system.file("extdata", "example.mzML", package = "msfingerprint")
 
----
+result <- run_processing(FILE = file)
 
-## Parameters
+names(result)
+str(result$monoisotopic_peaks)
+```
 
-Search parameters can be modified directly inside the scripts:
+------------------------------------------------------------------------
 
-* `mascot_parameters` for Mascot
-* `msfit_parameters` for MS-Fit
+## Dependencies
 
-Adjust these values to match experimental conditions.
+- `MALDIquant`
+- `MALDIquantForeign`
+- `ggplot2`
 
----
+------------------------------------------------------------------------
 
-## Notes
+## Development
 
-* Designed for MALDI-TOF peptide mass fingerprinting.
-* Optimal results are obtained with spectra producing **20–40 monoisotopic peaks**.
-* Contaminant peaks from trypsin autolysis and keratin are automatically removed.
+Future improvements:
 
----
+- Complete input validation helpers `preprocessing_check_input()`
+  - Most of the important fields already are validated before server
+    submission
+- Unified pipeline function `run_analysis()`
+  - Complete processing and database search pipeline
 
-## Disclaimer
+------------------------------------------------------------------------
 
-This software is provided **for educational and research purposes only**.
+## Bug Reports
 
-* No guarantee of correctness or suitability
-* Not intended for clinical, diagnostic, or commercial use
-* Predictions should always be validated independently
+Please report issues here:
 
-Use at your own risk.
+<https://github.com/SpikeMurphy/MassSpectFPAutoTool/issues>
 
----
+------------------------------------------------------------------------
 
 ## Author
 
-Spike Murphy Müller
+**Spike Murphy Müller**
 
----
+ORCID: 0009-0003-3561-7991
 
-## Copyright
+------------------------------------------------------------------------
 
-© 2026 Spike Murphy Müller · Licensed under the MIT License
+## Citation
+
+Müller, S. M. (2026). *MassSpectFPAutoTool (msfingerprint): Tools for
+Automated Peptide Mass Fingerprint Analysis*. R package version 1.0.0,
+<https://github.com/SpikeMurphy/MassSpectFPAutoTool>.
+
+------------------------------------------------------------------------
+
+## License
+
+This package is available free of charge under the MIT License:
+
+<https://github.com/SpikeMurphy/MassSpectFPAutoTool/LICENSE.md>
