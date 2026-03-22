@@ -53,6 +53,9 @@ search_msfit <- function(
   ){
   
   #check inputs
+  cat("Checking inputs")
+  loading_animation()
+  
   msfit_check_peaks(PEAKS)
   msfit_check_sequence(SEQUENCE)
   msfit_check_database(DATABASE, SPECIES)
@@ -67,6 +70,9 @@ search_msfit <- function(
   msfit_check_instrument(INST, FORMAT)
   
   # generate peaklist
+  cat("Generating peaklists")
+  loading_animation()
+  
   PEAKS <- paste(PEAKS, collapse="\n")
   
   # Create HTML inputs for contant modifications (CONSTMODS)
@@ -84,6 +90,9 @@ search_msfit <- function(
   }
   
   # create and submit HTML
+  cat("Creating local HTML copy")
+  loading_animation()
+  
   html <- paste0(
     '<!DOCTYPE html>
     <html>
@@ -156,13 +165,31 @@ search_msfit <- function(
   writeLines(text = html, con = temp)
   
   if (TEST == FALSE){
+    cat("Submitting HTML to Protein Prospector MS-Fit server")
+    loading_animation()
     browseURL(url = temp)
+  } else {
+    cat("Done. \n")
   }
 }
 
 
 # =================================================== #
-# ===== ASSISTING FUNCTIONS ========================= #
+# ===== HELPER FUNCTIONS ============================ #
+# =================================================== #
+
+loading_animation <- function(t = 0.2){
+  for (i in c(1:3)) {
+    Sys.sleep(t)
+    cat(".")
+  }
+  Sys.sleep(t)
+  cat("\n")
+}
+
+
+# =================================================== #
+# ===== TESTING FUNCTIONS =========================== #
 # =================================================== #
 
 msfit_check_peaks <- function(PEAKS){

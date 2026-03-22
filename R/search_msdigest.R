@@ -36,6 +36,9 @@ search_msdigest <- function(
   ){
   
   #check inputs
+  cat("Checking inputs")
+  loading_animation()
+  
   msdigest_check_empty(SEQUENCE, DATABASE)
   msdigest_check_sequence(SEQUENCE, DATABASE)
   msdigest_check_database(DATABASE, ACCESS, ENTRYDATA)
@@ -61,6 +64,9 @@ search_msdigest <- function(
   }
   
   # create and submit HTML
+  cat("Creating HTML")
+  loading_animation()
+  
   html <- paste0(
     '<!DOCTYPE html>
     <html>
@@ -106,13 +112,33 @@ search_msdigest <- function(
   writeLines(text = html, con = temp)
   
   if (TEST == FALSE){
+    cat("Submitting HTML to Protein Prospector MS-Digest server")
+    loading_animation()
+    
     browseURL(url = temp)
+  } else {
+    cat("Done. \n")
   }
+  
 }
 
 
 # =================================================== #
-# ===== ASSISTING FUNCTIONS ========================= #
+# ===== HELPER FUNCTIONS ============================ #
+# =================================================== #
+
+loading_animation <- function(t = 0.2){
+  for (i in c(1:3)) {
+    Sys.sleep(t)
+    cat(".")
+  }
+  Sys.sleep(t)
+  cat("\n")
+}
+
+
+# =================================================== #
+# ===== TESTING FUNCTIONS =========================== #
 # =================================================== #
 
 msdigest_check_empty <- function(SEQUENCE, DATABASE){

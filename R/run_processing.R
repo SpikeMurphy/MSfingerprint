@@ -2,11 +2,35 @@
 # ===== MAIN FUNCTION =============================== #
 # =================================================== #
 
-run_processing <- function (FILE, CLEAVAGE = "Trypsin", KERATIN = TRUE, TAG = NULL, EXCLUDE = c(), SNR = 30, PEAKS = c(30, 10), PLOTS = TRUE, TRANSFORM = "sqrt", SMOOTH = c("SavitzkyGolay", 10), BASELINE = c("SNIP", 100), CALIBRATE = "TIC"){
+run_processing <- function (
+    FILE, 
+    
+    CLEAVAGE = "Trypsin", 
+    KERATIN = TRUE, 
+    TAG = NULL, 
+    EXCLUDE = c(), 
+    
+    SNR = 30, 
+    PEAKS = c(30, 10), 
+    
+    PLOTS = TRUE, 
+    
+    TRANSFORM = "sqrt", 
+    SMOOTH = c("SavitzkyGolay", 10), 
+    BASELINE = c("SNIP", 100), 
+    CALIBRATE = "TIC"
+    ){
+  
   # read file(s)
+  cat("Importing file")
+  loading_animation()
+  
   raw_spectrum <- MALDIquantForeign::import(FILE)
   
   # preprossessing
+  cat("Preprocessing mass spectrometry data")
+  loading_animation()
+  
   preprocessed_spectrum <- raw_spectrum |>
     MALDIquant::transformIntensity(method = TRANSFORM) |> # Reduce dominance of very large peaks with square root scaling
     MALDIquant::smoothIntensity(method = SMOOTH[1], halfWindowSize = as.numeric(SMOOTH[2])) |> # Reduce noise while preserving peak shape
@@ -76,6 +100,9 @@ run_processing <- function (FILE, CLEAVAGE = "Trypsin", KERATIN = TRUE, TAG = NU
   ## loop
   while (number_peaks < min_peaks || number_peaks > max_peaks){
     ### detect peaks
+    cat("Detecting peaks and removing contaminants")
+    loading_animation(t = 0.02)
+    
     peaks <- MALDIquant::detectPeaks(
       preprocessed_spectrum,
       SNR = sigal_noise_ratio,
@@ -221,11 +248,18 @@ run_processing <- function (FILE, CLEAVAGE = "Trypsin", KERATIN = TRUE, TAG = NU
     
     ### adjust signal_noise_ratio
     if (number_peaks < min_peaks){
+      cat("Decreasing signal-to-noise-ratio")
+      loading_animation(t = 0.05)
       peak_differnce <- min_peaks - number_peaks
       sigal_noise_ratio <- sigal_noise_ratio - 1 * sqrt(peak_differnce)
     }else if (number_peaks > max_peaks){
+      cat("Increasing signal-to-noise-ratio")
+      loading_animation(t = 0.05)
       peak_differnce <- number_peaks - max_peaks
       sigal_noise_ratio <- sigal_noise_ratio + 1 * sqrt(peak_differnce)
+    } else {
+      cat("Signal-to-noise ratio:", sigal_noise_ratio, "\n")
+      Sys.sleep(0.2)
     }
     
     ### generate list of monoisotopic peaks for contaminants (for comments see above)
@@ -329,6 +363,8 @@ run_processing <- function (FILE, CLEAVAGE = "Trypsin", KERATIN = TRUE, TAG = NU
   }
   
   # Plots
+  cat("Generating plots")
+  loading_animation()
   ## Plot Raw Data
   plot_raw_data <- data.frame(mz = MALDIquant::mass(raw_spectrum[[1]]), intensity = MALDIquant::intensity(raw_spectrum[[1]]))
   
@@ -417,6 +453,7 @@ run_processing <- function (FILE, CLEAVAGE = "Trypsin", KERATIN = TRUE, TAG = NU
   # return
   # TODO: change returnvalue according to agruments
   if (PLOTS == TRUE) {
+    cat("Processing done. Returning peaklists and plots. \n")
     return(
       list(
         monoisotopic_peaks = plot_peaks_mono_data,
@@ -432,6 +469,7 @@ run_processing <- function (FILE, CLEAVAGE = "Trypsin", KERATIN = TRUE, TAG = NU
       )
     )
   } else {
+      cat("Processing done. Returning peaklists. \n")
       return(
         list(
           monoisotopic_peaks = plot_peaks_mono_data,
@@ -447,7 +485,21 @@ run_processing <- function (FILE, CLEAVAGE = "Trypsin", KERATIN = TRUE, TAG = NU
 
 
 # =================================================== #
-# ===== ASSISTING FUNCTIONS ========================= #
+# ===== HELPER FUNCTIONS ============================ #
+# =================================================== #
+
+loading_animation <- function(t = 0.2){
+  for (i in c(1:3)) {
+    Sys.sleep(t)
+    cat(".")
+  }
+  Sys.sleep(t)
+  cat("\n")
+}
+
+
+# =================================================== #
+# ===== TESTING FUNCTIONS =========================== #
 # =================================================== #
 
 processing_check_file <- function(FILE){
@@ -529,3 +581,6 @@ processing_check_plots <- function(PLOTS){
 processing_check_processing <- function(TRANSFORM, SMOOTH, BASELINE, CALIBRATE){
   
 }
+
+
+run_processing(SNR = 100, FILE = '/Users/spikemurphymuller/Library/Mobile Documents/com~apple~CloudDocs/Spike/Programming/GitHub/Spike Murphy Müller/Scientific Tools/MassSpectFPAutoTool/inst/extdata/example.mzXML')
