@@ -6,5 +6,5 @@ citEntry(
   author = person("Spike Murphy", "Mueller"),
   year = "2026",
   note = "R package version 1.0.0",
-  url = "https://github.com/SpikeMurphy/MassSpectFPAutoTool"
+  url = "https://github.com/SpikeMurphy/MSfingerprint"
 )
