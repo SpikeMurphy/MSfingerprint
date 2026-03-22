@@ -112,7 +112,7 @@ You can install the development version from GitHub:
 ``` r
 install.packages("devtools")
 library("devtools")
-devtools::install_github("SpikeMurphy/MassSpectFPAutoTool")
+devtools::install_github("SpikeMurphy/MSfingerprint")
 ```
 
 ------------------------------------------------------------------------
@@ -423,7 +423,7 @@ Future improvements:
 
 Please report issues here:
 
-<https://github.com/SpikeMurphy/MassSpectFPAutoTool/issues>
+<https://github.com/SpikeMurphy/MSfingerprint/issues>
 
 ------------------------------------------------------------------------
 
@@ -437,9 +437,9 @@ ORCID: 0009-0003-3561-7991
 
 ## Citation
 
-Müller, S. M. (2026). *MassSpectFPAutoTool (MSfingerprint): Tools for
-Automated Peptide Mass Fingerprint Analysis*. R package version 1.0.0,
-<https://github.com/SpikeMurphy/MassSpectFPAutoTool>.
+Müller, S. M. (2026). *MSfingerprint: Automated Mass Spectrometry
+Peptide Mass Fingerprint Analysis*. R package version 1.0.0,
+<https://github.com/SpikeMurphy/MSfingerprint>.
 
 ------------------------------------------------------------------------
 
@@ -447,4 +447,4 @@ Automated Peptide Mass Fingerprint Analysis*. R package version 1.0.0,
 
 This package is available free of charge under the MIT License:
 
-<https://github.com/SpikeMurphy/MassSpectFPAutoTool/LICENSE.md>
+<https://github.com/SpikeMurphy/MSfingerprint/LICENSE.md>
