@@ -293,7 +293,8 @@ search_msdigest(
 
 | Function | Description |
 |----|----|
-| `run_processing()` | Main preprocessing and peak detection pipeline |
+| `run_analysis()` | Full processing and database search pipeline |
+| `run_processing()` | Main processing and peak detection pipeline |
 | `search_mascot()` | Protein identification *Matrix Science* **Mascot** Server |
 | `search_msfit()` | Protein identification via *Protein Prospector* **MS-Fit** Server |
 | `search_msdigest()` | Perform in silico digestion and peaklist calculation |
