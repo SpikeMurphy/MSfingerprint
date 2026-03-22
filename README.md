@@ -1,3 +1,6 @@
+msfingerprint
+================
+
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
 # msfingerprint
@@ -108,13 +111,15 @@ devtools::install_github("SpikeMurphy/MassSpectFPAutoTool")
 library(msfingerprint)
 ```
 
-### 2. Processing Spectrum
+### Individual Functions
+
+#### 2. Processing Spectrum
 
 ``` r
 result <- run_processing(FILE = "~/dir/example.mzXML")
 ```
 
-### 3. Accessing Results
+#### 3. Accessing Results
 
 ``` r
 # Monoisotopic peaks
@@ -132,7 +137,7 @@ result$plot_peaks_mono
 result$plot_peaks_mono_contaminants
 ```
 
-### 4. Visualizing Data
+#### 4. Visualizing Data
 
 ``` r
 # Plots
@@ -143,7 +148,7 @@ print(result$plot_peaks_mono)
 print(result$plot_peaks_mono_contaminants)
 ```
 
-### 5. Searching Database
+#### 5. Searching Database
 
 ``` r
 peaklist <- result$monoisotopic_peaks$peaks
@@ -157,6 +162,64 @@ search_mascot(
 
 # MS-Fit
 search_msfit(PEAKS = peaklist)
+```
+
+### Full Pipeline in One Function
+
+#### 2. Processing Spectrum
+
+``` r
+result <- run_analysis(FILE = "~/dir/example.mzXML", MASCOT = TRUE, MSFIT = FALSE)
+```
+
+#### 3. Accessing Results
+
+``` r
+# Monoisotopic peaks
+result$monoisotopic_peaks
+result$monoisotopic_peaks_cleavage
+result$monoisotopic_peaks_keratin
+result$monoisotopic_peaks_tag
+result$monoisotopic_peaks_custom
+
+# Plots
+result$plot_raw
+result$plot_preprocessed
+result$plot_peaks
+result$plot_peaks_mono
+result$plot_peaks_mono_contaminants
+```
+
+#### 4. Visualizing Data
+
+``` r
+# Plots
+print(result$plot_raw)
+print(result$plot_preprocessed)
+print(result$plot_peaks)
+print(result$plot_peaks_mono)
+print(result$plot_peaks_mono_contaminants)
+```
+
+#### 5. Searching Database
+
+``` r
+# Mascot Search
+result <- run_analysis(
+  FILE = "~/dir/example.mzXML", 
+  MASCOT = TRUE, 
+  MASCOT_ARGS = list(), 
+  MSFIT = FALSE)
+
+# MS-Fit Search
+result <- run_analysis(
+  FILE = "~/dir/example.mzXML", 
+  MASCOT = FALSE, 
+  MSFIT = TRUE, 
+  MSFIT_ARGS = list(), )
+
+# Dual Search
+result <- run_analysis(FILE = "~/dir/example.mzXML", MASCOT = TRUE, MSFIT = TRUE)
 ```
 
 ------------------------------------------------------------------------

@@ -36,8 +36,10 @@ search_msdigest <- function(
   ){
   
   #check inputs
-  cat("Checking inputs")
-  loading_animation()
+  if (TEST == FALSE){
+    cat("Checking inputs")
+    loading_animation()
+  }
   
   msdigest_check_empty(SEQUENCE, DATABASE)
   msdigest_check_sequence(SEQUENCE, DATABASE)
@@ -64,8 +66,10 @@ search_msdigest <- function(
   }
   
   # create and submit HTML
-  cat("Creating HTML")
-  loading_animation()
+  if (TEST == FALSE){
+    cat("Creating HTML")
+    loading_animation()
+  }
   
   html <- paste0(
     '<!DOCTYPE html>
@@ -112,12 +116,10 @@ search_msdigest <- function(
   writeLines(text = html, con = temp)
   
   if (TEST == FALSE){
-    cat("Submitting HTML to Protein Prospector MS-Digest server")
+    cat("Submitting HTML to Protein Prospector MS-Digest server.")
     loading_animation()
     
     browseURL(url = temp)
-  } else {
-    cat("Done. \n")
   }
   
 }

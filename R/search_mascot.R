@@ -32,8 +32,10 @@ search_mascot <- function(
   ){
   
   #check inputs
-  cat("Checking inputs")
-  loading_animation()
+  if (TEST == FALSE){
+    cat("Checking inputs")
+    loading_animation()
+  }
   
   mascot_check_peaks(PEAKS)
   mascot_check_auth(USERNAME, USEREMAIL)
@@ -44,8 +46,10 @@ search_mascot <- function(
   mascot_check_display(REPORT)
 
   # generate peaklist
-  cat("Generating peaklists")
-  loading_animation()
+  if (TEST == FALSE){
+    cat("Generating peaklists")
+    loading_animation()
+  }
   
   PEAKS <- paste(PEAKS, collapse="\n")
   
@@ -64,8 +68,10 @@ search_mascot <- function(
   }
   
   # create and submit HTML
-  cat("Generationg local HTML copy")
-  loading_animation()
+  if (TEST == FALSE){
+    cat("Generationg local HTML copy")
+    loading_animation()
+  }
   
   html <- paste0(
     
@@ -112,9 +118,8 @@ search_mascot <- function(
     loading_animation()
     
     browseURL(url = temp)
-  }else {
-    cat("Done. \n")
   }
+  
 }
 
 

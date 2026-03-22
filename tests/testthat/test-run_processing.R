@@ -66,8 +66,8 @@ test_that("`processing_check_contaminants` works as intended.", {
 
 test_that("`processing_check_prerequisites` works as intended.", {
   # TODO
-  expect_no_warning(processing_check_prerequisites(SNR, PEAKS))
-  expect_no_error(processing_check_prerequisites(SNR, PEAKS))
+  expect_no_warning(processing_check_prerequisites(SNR, PEAKSRANGE))
+  expect_no_error(processing_check_prerequisites(SNR, PEAKSRANGE))
 })
 
 
