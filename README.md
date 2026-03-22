@@ -75,7 +75,7 @@ with additional features in the future.
   - Keratin
   - Optional tags like GFP, RFP (planned: other common tags)
   - User specified peaks like other tags or contaminants which can be
-    obtained using `search_msdigest()`
+    obtained using `msf_msdigest()`
 
 - Monoisotopic peak extraction
 
@@ -122,7 +122,7 @@ devtools::install_github("SpikeMurphy/MassSpectFPAutoTool")
 ### 1. Loading Package
 
 ``` r
-library(msfingerprint)
+library(MSfingerprint)
 ```
 
 ### Individual Functions
@@ -130,7 +130,7 @@ library(msfingerprint)
 #### 2. Processing Spectrum
 
 ``` r
-result <- run_processing(FILE = "~/dir/example.mzXML")
+result <- msf_processing(FILE = "~/dir/example.mzXML")
 ```
 
 #### 3. Accessing Results
@@ -168,14 +168,14 @@ print(result$plot_peaks_mono_contaminants)
 peaklist <- result$monoisotopic_peaks$peaks
 
 # Mascot
-search_mascot(
+msf_mascot(
   PEAKS = peaklist,
   USERNAME = "Firstname Lastname",
   USEREMAIL = "example@email.test"
 )
 
 # MS-Fit
-search_msfit(PEAKS = peaklist)
+msf_msfit(PEAKS = peaklist)
 ```
 
 ### Full Pipeline in One Function
@@ -183,7 +183,7 @@ search_msfit(PEAKS = peaklist)
 #### 2. Processing Spectrum
 
 ``` r
-result <- run_analysis(FILE = "~/dir/example.mzXML", MASCOT = TRUE, MSFIT = FALSE)
+result <- msf_workflow(FILE = "~/dir/example.mzXML", MASCOT = TRUE, MSFIT = FALSE)
 ```
 
 #### 3. Accessing Results
@@ -219,21 +219,21 @@ print(result$plot_peaks_mono_contaminants)
 
 ``` r
 # Mascot Search
-result <- run_analysis(
+result <- msf_workflow(
   FILE = "~/dir/example.mzXML", 
   MASCOT = TRUE, 
   MASCOT_ARGS = list(), 
   MSFIT = FALSE)
 
 # MS-Fit Search
-result <- run_analysis(
+result <- msf_workflow(
   FILE = "~/dir/example.mzXML", 
   MASCOT = FALSE, 
   MSFIT = TRUE, 
   MSFIT_ARGS = list(), )
 
 # Dual Search
-result <- run_analysis(FILE = "~/dir/example.mzXML", MASCOT = TRUE, MSFIT = TRUE)
+result <- msf_workflow(FILE = "~/dir/example.mzXML", MASCOT = TRUE, MSFIT = TRUE)
 ```
 
 ------------------------------------------------------------------------
@@ -257,7 +257,7 @@ The main processing pipeline:
 
 ## Contaminant Handling
 
-The function `run_processing()` removes known contaminant peaks:
+The function `msf_processing()` removes known contaminant peaks:
 
 - **Trypsin autolysis peaks**
 
@@ -280,7 +280,7 @@ Tolerance-based matching is used to identify contaminant peaks.
 ### Mascot
 
 ``` r
-search_mascot(
+msf_mascot(
   PEAKS = result$monoisotopic_peaks$peaks,
   USERNAME = "Firstname Lastname",
   USEREMAIL = "example@email.test"
@@ -290,7 +290,7 @@ search_mascot(
 ### MS-Fit
 
 ``` r
-search_msfit(
+msf_msfit(
   PEAKS = result$monoisotopic_peaks$peaks
 )
 ```
@@ -298,7 +298,7 @@ search_msfit(
 ### MS-Digest
 
 ``` r
-search_msdigest(
+msf_msdigest(
   SEQUENCE = "MKWVTFISLLFLFSSAYSRGVFRRDAHKSEVAHRFKDLGEENFKALVLIA"
 )
 ```
@@ -309,17 +309,17 @@ search_msdigest(
 
 | Function | Description |
 |----|----|
-| `run_analysis()` | Full processing and database search pipeline |
-| `run_processing()` | Main processing and peak detection pipeline |
-| `search_mascot()` | Protein identification *Matrix Science* **Mascot** Server |
-| `search_msfit()` | Protein identification via *Protein Prospector* **MS-Fit** Server |
-| `search_msdigest()` | Perform in silico digestion and peaklist calculation |
+| `msf_workflow()` | Full processing and database search pipeline |
+| `msf_processing()` | Main processing and peak detection pipeline |
+| `msf_mascot()` | Protein identification *Matrix Science* **Mascot** Server |
+| `msf_msfit()` | Protein identification via *Protein Prospector* **MS-Fit** Server |
+| `msf_msdigest()` | Perform in silico digestion and peaklist calculation |
 
 ------------------------------------------------------------------------
 
 ## Input
 
-The main function `run_processing` takes:
+The main function `msf_processing` takes:
 
 - MS files:
   - Tested on `msXML` file format
@@ -347,7 +347,7 @@ c(
 
 ## Output
 
-The main function `run_processing` returns:
+The main function `msf_processing` returns:
 
 - Clean monoisotopic peaks
 
@@ -389,9 +389,9 @@ The main function `run_processing` returns:
     figure](man/figures/mono_cont_peaks_spectrum.png)
 
 ``` r
-file <- system.file("extdata", "example.mzXML", package = "msfingerprint")
+file <- system.file("extdata", "example.mzXML", package = "MSfingerprint")
 
-result <- run_processing(FILE = file)
+result <- msf_processing(FILE = file)
 
 names(result)
 str(result$monoisotopic_peaks)
@@ -414,7 +414,7 @@ Future improvements:
 - Complete input validation helpers `preprocessing_check_input()`
   - Most of the important fields already are validated before server
     submission
-- Unified pipeline function `run_analysis()`
+- Unified pipeline function `msf_workflow()`
   - Complete processing and database search pipeline
 
 ------------------------------------------------------------------------
@@ -437,7 +437,7 @@ ORCID: 0009-0003-3561-7991
 
 ## Citation
 
-Müller, S. M. (2026). *MassSpectFPAutoTool (msfingerprint): Tools for
+Müller, S. M. (2026). *MassSpectFPAutoTool (MSfingerprint): Tools for
 Automated Peptide Mass Fingerprint Analysis*. R package version 1.0.0,
 <https://github.com/SpikeMurphy/MassSpectFPAutoTool>.
 

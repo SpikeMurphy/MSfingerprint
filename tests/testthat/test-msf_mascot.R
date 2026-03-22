@@ -1,7 +1,7 @@
 test_that("`search_mascot` works as intended.", {
   # TODO
-  expect_no_warning(search_mascot(PEAKS = c(1, 2, 3), USERNAME = "Firstname Middlename Lastname", USEREMAIL = "mail@example.com", TEST = TRUE))
-  expect_no_error(search_mascot(PEAKS = c(1, 2, 3), USERNAME = "Firstname Middlename Lastname", USEREMAIL = "mail@example.com", TEST = TRUE))
+  expect_no_warning(msf_mascot(PEAKS = c(1, 2, 3), USERNAME = "Firstname Middlename Lastname", USEREMAIL = "mail@example.com", TEST = TRUE))
+  expect_no_error(msf_mascot(PEAKS = c(1, 2, 3), USERNAME = "Firstname Middlename Lastname", USEREMAIL = "mail@example.com", TEST = TRUE))
 })
 
 

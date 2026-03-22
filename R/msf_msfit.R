@@ -4,7 +4,7 @@
 # ===== MAIN FUNCTION =============================== #
 # =================================================== #
 
-search_msfit <- function(
+msf_msfit <- function(
     PEAKS,
     SEQUENCE = NULL,
     

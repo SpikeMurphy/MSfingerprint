@@ -1,5 +1,5 @@
-\name{search_digest}
-\alias{search_digest}
+\name{msf_digest}
+\alias{msf_digest}
 \title{Perform a Protein Prospector MS-Digest Search}
 \description{This function takes a protein sequence or database entry as input 
     and submits a request to a Protein Prospector MS-Digest server to perform 
@@ -11,7 +11,7 @@
     be used to automate the analysis of multiple sequences.
 }
 \usage{
-search_msdigest(
+msf_msdigest(
     SEQUENCE = "...",  
     
     DATABASE = "User Protein",
@@ -89,7 +89,7 @@ and submits an HTML-form to the MS-Fit server to initiate the search.
 }
 \examples{
 \dontrun{
-search_msdigest()
+msf_msdigest()
     SEQUENCE = "MKWVTFISLLFLFSSAYSRGVFRRDAHKSEVAHRFKDLGEENFKALVLIAFAQYLQQCPFEDH
     VKLVNEVTEFAKTCVADESAENCDKSLHTLFGDKLCTVATLRETYGEMADCCAKQEPERNECFLQHKDDNPNLPR
     LVRPEVDVMCTAFHDNEETFLKKYLYEIARRHPYFYAPELLFFAKRYKAAFTECCQAADKAACLLPKLDELRDEG
@@ -101,7 +101,7 @@ search_msdigest()
     ETCFAEEGKKLVAASQAALGL" # human serum albumin
 )
 
-search_msdigest(
+msf_msdigest(
     SEQUENCE = "MKWVTFISLLFLFSSAYSRGVFRRDAHKSEVAHRFKDLGEENFKALVLIAFAQYLQQCPFEDH
     VKLVNEVTEFAKTCVADESAENCDKSLHTLFGDKLCTVATLRETYGEMADCCAKQEPERNECFLQHKDDNPNLPR
     LVRPEVDVMCTAFHDNEETFLKKYLYEIARRHPYFYAPELLFFAKRYKAAFTECCQAADKAACLLPKLDELRDEG

@@ -2,7 +2,7 @@
 # ===== MAIN FUNCTION =============================== #
 # =================================================== #
 
-run_processing <- function (
+msf_processing <- function (
     FILE, 
     
     CLEAVAGE = "Trypsin", 

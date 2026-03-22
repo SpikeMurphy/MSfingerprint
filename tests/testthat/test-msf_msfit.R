@@ -1,7 +1,7 @@
 test_that("`search_msfit` works as intended.", {
   # TODO
-  expect_no_warning(search_msfit(PEAKS = c(1, 2, 3), TEST = TRUE))
-  expect_no_error(search_msfit(PEAKS = c(1, 2, 3), TEST = TRUE))
+  expect_no_warning(msf_msfit(PEAKS = c(1, 2, 3), TEST = TRUE))
+  expect_no_error(msf_msfit(PEAKS = c(1, 2, 3), TEST = TRUE))
 })
 
 

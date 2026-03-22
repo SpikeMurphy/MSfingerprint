@@ -1,4 +1,4 @@
-run_analysis <- function(
+msf_workflow <- function(
     FILE, 
     
     MASCOT = FALSE,
@@ -38,27 +38,27 @@ run_analysis <- function(
     loading_animation()
   }
   
-  result <- do.call(run_processing, c(list(FILE = FILE), PROCESSING_ARGS))
+  result <- do.call(msf_processing, c(list(FILE = FILE), PROCESSING_ARGS))
   
   peaks = result$monoisotopic_peaks$peaks
   
   # run mascot
   if (MASCOT == TRUE) {
     if (TEST == FALSE){
-      cat("Running `search_mascot`")
+      cat("Running `msf_mascot`")
       loading_animation()
     }
-    do.call(run_mascot, c(list(PEAKS = peaks), MASCOT_ARGS))
+    do.call(msf_mascot, c(list(PEAKS = peaks), MASCOT_ARGS))
   }
   
   # run ms-fit
   if (MSFIT == TRUE) {
     if (TEST == FALSE){
-      cat("Running `search_msfit`")
+      cat("Running `msf_msfit`")
       loading_animation()
     }
     
-    do.call(run_msfit, c(list(PEAKS = peaks), MSFIT_ARGS))
+    do.call(msf_msfit, c(list(PEAKS = peaks), MSFIT_ARGS))
   }
   
   if (TEST == FALSE){

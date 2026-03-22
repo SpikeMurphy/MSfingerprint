@@ -1,6 +1,6 @@
-Package: msfingerprint
+Package: MSfingerprint
 Type: Package
-Title: MassSpectFPAutoTool
+Title: Automated Mass Spectrometry Peptide Mass Fingerprint Analysis
 Version: 1.0.0
 Authors@R: 
     person(

@@ -4,7 +4,7 @@
 # ===== MAIN FUNCTION =============================== #
 # =================================================== #
 
-search_mascot <- function(
+msf_mascot <- function(
     PEAKS,
   
     USERNAME,

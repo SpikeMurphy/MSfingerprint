@@ -1,5 +1,5 @@
-\name{search_mascot}
-\alias{search_mascot}
+\name{msf_mascot}
+\alias{msf_mascot}
 \title{Perform a Matrix Science Mascot Peptide Mass Fingerprint Search from a Peaklist}
 \description{This function takes as argument a peaklist and sends a request to 
     the Matrix Science Mascot server for peptide mass fingerprint (PMF) 
@@ -11,7 +11,7 @@
     to automate the analysis of multiple peak lists.
 }
 \usage{
-search_mascot(
+msf_mascot(
     PEAKS = c(...),
     
     USERNAME = "Firstname Middlename Lastname",
@@ -68,7 +68,7 @@ and submits an HTML-form to the Mascot server to initiate the search.
 }
 \examples{
 \dontrun{
-search_mascot(
+msf_mascot(
     PEAKS = c(
       # human serum albumin
       802.4781, 809.4992, 817.4778, 854.4519, 875.5098, 876.4971, 880.4411, 890.5128,
@@ -95,7 +95,7 @@ search_mascot(
     USEREMAIL = "example@mail.test",
 )
   
-search_mascot(
+msf_mascot(
     PEAKS = c(
       # human serum albumin
       802.4781, 809.4992, 817.4778, 854.4519, 875.5098, 876.4971, 880.4411, 890.5128,

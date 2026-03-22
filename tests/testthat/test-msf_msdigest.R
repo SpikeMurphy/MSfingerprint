@@ -1,6 +1,6 @@
 test_that("`search_msdigest` works as intended.", {
-  expect_no_warning(search_msdigest(SEQUENCE = "M", TEST = TRUE))
-  expect_no_error(search_msdigest(SEQUENCE = "M", TEST = TRUE))
+  expect_no_warning(msf_msdigest(SEQUENCE = "M", TEST = TRUE))
+  expect_no_error(msf_msdigest(SEQUENCE = "M", TEST = TRUE))
 })
 
 

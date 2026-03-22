@@ -1,21 +1,21 @@
-\name{run_analysis}
-\alias{run_analysis}
+\name{msf_workflow}
+\alias{msf_workflow}
 \title{Run Full Peptide Mass Fingerprint Analysis Pipeline}
-\description{
-This function performs a complete peptide mass fingerprinting (PMF) analysis 
-workflow for mass spectrometry data. It integrates preprocessing, peak detection, 
-and optional database searches using Mascot and/or MS-Fit.
+\description{This function performs a complete peptide mass fingerprinting 
+    (PMF) analysis workflow for mass spectrometry data. It integrates 
+    preprocessing, peak detection, and optional database searches using Mascot 
+    and/or MS-Fit.
 
-The function first calls \code{run_processing()} to preprocess the input file and 
-detect monoisotopic peaks. The resulting peak list can then be submitted to 
-external search engines depending on user selection.
-
-\strong{Important:} External search services (Mascot and MS-Fit) do not allow 
-automated batch submissions. This function should only be used for individual 
-analyses.
-}
+    The function first calls \code{msf_processing()} to preprocess the input 
+    file and detect monoisotopic peaks. The resulting peak list can then be 
+    submitted to external search engines depending on user selection.
+    
+    \strong{Important:} External search services (Mascot and MS-Fit) do not 
+    allow automated batch submissions. This function should only be used for 
+    individual analyses.
+    }
 \usage{
-run_analysis <- function(
+msf_workflow <- function(
     FILE, 
     
     MASCOT = FALSE,
@@ -35,7 +35,7 @@ run_analysis <- function(
   
   \item{MSFIT}{Logical. Whether to perform a Protein Prospector MS-Fit peptide mass fingerprint search using \code{search_msfit()}. The default argument is \code{FALSE}.}
   
-  \item{PROCESSING_ARGS}{List. Additional arguments passed to \code{run_processing()}.
+  \item{PROCESSING_ARGS}{List. Additional arguments passed to \code{msf_processing()}.
     
     Common elements include:
     \describe{
@@ -47,7 +47,7 @@ run_analysis <- function(
       \item{PEAKS}{Numeric vector. Threshhold for the number of monoisotopic peaks to detect. The default argument is \code{c(30, 10)} with 30 ± 10 (20 to 40) peaks to be detected.}
       \item{PLOTS}{Logical. Whether to include plots in the returned list. The default argument is \code{TRUE}.}
     }
-    See \code{\link{run_processing}} for full details.
+    See \code{\link{msf_processing}} for full details.
   }
   
   \item{MASCOT_ARGS}{List. Additional arguments passed to \code{search_mascot()}. Only used if \code{MASCOT = TRUE}.
@@ -101,30 +101,30 @@ This includes but is not limited to:
   {Plot of monoisotopic peaks including those for the target protein and the identified contaminants.}
 }
 
-See \code{\link{run_processing}} for full details.
+See \code{\link{msf_processing}} for full details.
 }
 \examples{
 \dontrun{
 # Basic usage
-run_analysis(
+msf_workflow(
   "sample.msXML"
 )
 
 # With preprocessing customization
-run_analysis(
+msf_workflow(
   "sample.msXML",
   PROCESSING_ARGS = list(SNR = 20, PEAKS = c(40, 15))
 )
 
 # With Mascot search
-run_analysis(
+msf_workflow(
   "sample.msXML",
   MASCOT = TRUE,
   MASCOT_ARGS = list(USERNAME = "John Doe", USEREMAIL = "john@example.com")
 )
 
 # With both Mascot and MS-Fit searches
-run_analysis(
+msf_workflow(
   "sample.msXML",
   MASCOT = TRUE,
   MSFIT = TRUE

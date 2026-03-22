@@ -1,7 +1,7 @@
-export(run_analysis)
+export(msf_workflow)
 
-export(run_processing)
+export(msf_processing)
 
-export(search_mascot)
-export(search_msfit)
-export(search_msdigest)
+export(msf_mascot)
+export(msf_msfit)
+export(msf_msdigest)

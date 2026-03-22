@@ -1,5 +1,5 @@
-\name{run_preprocessing}
-\alias{run_preprocessing}
+\name{msf_preprocessing}
+\alias{msf_preprocessing}
 \title{Run preprocessing and peak detection for mass spectrometry peptide mass fingerprinting data}
 \description{This function performs preprocessing of a mass spectrometry 
     peptide mass fingerprinting (PMF) file, including intensity transformation, 
@@ -12,7 +12,7 @@
     suitable for downstream analysis or database searches.
 }
 \usage{
-run_processing(
+msf_processing(
     FILE = "filepath", 
     
     CLEAVAGE = "Trypsin", 
@@ -105,7 +105,7 @@ peak intensities fot the target protein and contaminants as well as optional plo
 \examples{
 \dontrun{
 }
-run_processing(
+msf_processing(
     FILE = "~/dir/example.mzML", 
     
     CLEAVAGE = "Trypsin", 

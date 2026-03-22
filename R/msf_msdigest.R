@@ -2,7 +2,7 @@
 # ===== MAIN FUNCTION =============================== #
 # =================================================== #
 
-search_msdigest <- function(
+msf_msdigest <- function(
     SEQUENCE = "",  
     
     # alternatively from database

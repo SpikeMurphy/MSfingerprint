@@ -1,17 +1,17 @@
-\name{search_msfit}
-\alias{search_msfit}
+\name{msf_msfit}
+\alias{msf_msfit}
 \title{Perform a Protein Prospector MS-Fit Peptide Mass Fingerprint Search from a Peaklist}
 \description{This function takes a peak list as input and submits a request 
-to a Protein Prospector MS-Fit server to perform a peptide mass fingerprint 
-(PMF) database search using specified parameters. Results are opened in the 
-user's default browser.
+    to a Protein Prospector MS-Fit server to perform a peptide mass fingerprint 
+    (PMF) database search using specified parameters. Results are opened in the 
+    user's default browser.
 
-\strong{Important:} MS-Fit servers do not allow batch submissions. This function 
-should only be used for individual peak lists and must not be used to automate 
-the analysis of multiple peak lists.
+    \strong{Important:} MS-Fit servers do not allow batch submissions. This 
+    function should only be used for individual peak lists and must not be 
+    used to automate the analysis of multiple peak lists.
 }
 \usage{
-search_msfit(
+msf_msfit(
     PEAKS,
     SEQUENCE = NULL,
     
@@ -121,7 +121,7 @@ and submits an HTML-form to the MS-Fit server to initiate the search.
 }
 \examples{
 \dontrun{
-search_msfit(
+msf_msfit(
   PEAKS = c(
       # human serum albumin
       802.4781, 809.4992, 817.4778, 854.4519, 875.5098, 876.4971, 880.4411, 890.5128,
@@ -145,7 +145,7 @@ search_msfit(
     )
 )
 
-search_msfit(
+msf_msfit(
   PEAKS = c(
       # human serum albumin
       802.4781, 809.4992, 817.4778, 854.4519, 875.5098, 876.4971, 880.4411, 890.5128,
