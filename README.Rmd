@@ -72,6 +72,20 @@ Nevertheless, this project represents an important first step toward broadening 
     -   MS-Fit (PMF search)
     -   MS-Digest (in silico protein digest and m/z peak calculation)
 
+### Where features differ from MALDIquant built-in capabilities
+
+-   Dynamic adjustment of peak detection using iterative tuning
+    -   Automatic optimization of signal-to-noise ratio to achieve a target number of detected peaks
+
+-   Contaminant-aware filtering and peak exclusion
+    -   Removal of known contaminant peaks (e.g., proteolytic fragments, keratin, affinity tags) as well as user-defined exclusions
+
+-   Automated database search submission (Mascot/MS-Fit)
+    -   Automatted construction and submission of peptide mass fingerprint queries via web form emulation
+
+-   Integrated peptide digest pipeline with automatic query construction (MS-Digest)
+    -   Automatted construction and submission of peptide digestion queries via web form emulation
+    
 ------------------------------------------------------------------------
 
 ## Installation
