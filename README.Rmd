@@ -1,17 +1,16 @@
 ---
-title: "msfingerprint"
 output: github_document
 ---
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# msfingerprint
+# MSfingerprint
 
 <!-- badges: start -->
 
 <!-- badges: end -->
 
-**msfingerprint** provides an automated workflow for preprocessing MALDI mass spectrometry data, detecting and cleaning peaks, removing contaminants, and submitting peptide mass fingerprinting (PMF) data to external identification tools.
+**MSfingerprint** provides an automated workflow for preprocessing MALDI mass spectrometry data, detecting and cleaning peaks, removing contaminants, and submitting peptide mass fingerprinting (PMF) data to external identification tools.
 
 The package is designed to streamline analysis pipelines from raw spectra to protein identification.
 
@@ -278,7 +277,7 @@ search_msdigest(
 ## Main Functions
 
 | Function | Description |
-|----|----|
+|------------------------------------|------------------------------------|
 | `run_processing()` | Main preprocessing and peak detection pipeline |
 | `search_mascot()` | Protein identification *Matrix Science* **Mascot** Server |
 | `search_msfit()` | Protein identification via *Protein Prospector* **MS-Fit** Server |

@@ -1,15 +1,13 @@
-msfingerprint
-================
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# msfingerprint
+# MSfingerprint
 
 <!-- badges: start -->
 
 <!-- badges: end -->
 
-**msfingerprint** provides an automated workflow for preprocessing MALDI
+**MSfingerprint** provides an automated workflow for preprocessing MALDI
 mass spectrometry data, detecting and cleaning peaks, removing
 contaminants, and submitting peptide mass fingerprinting (PMF) data to
 external identification tools.
