@@ -1,4 +1,3 @@
-
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
 # MSfingerprint
@@ -7,101 +6,82 @@
 
 <!-- badges: end -->
 
-**MSfingerprint** provides an automated workflow for preprocessing MALDI
-mass spectrometry data, detecting and cleaning peaks, removing
-contaminants, and submitting peptide mass fingerprinting (PMF) data to
-external identification tools.
+**MSfingerprint** provides an automated workflow for preprocessing MALDI mass spectrometry data, detecting and cleaning peaks, removing contaminants, and submitting peptide mass fingerprinting (PMF) data to external identification tools.
 
-The package is designed to streamline analysis pipelines from raw
-spectra to protein identification.
+The package is designed to streamline analysis pipelines from raw spectra to protein identification.
 
 ------------------------------------------------------------------------
 
 ## Table of Contents
 
-- [About the Project](#about-the-project)
-- [Motivation & Scope](#motivation--scope)
-- [Key Features](#key-features)
-- [Usage Overview](#usage-overview)
-- [Use in Academia](#use-in-academia)
-- [Technology Stack](#technology-stack)
-- [Application Architecture](#application-architecture)
-- [Included Files](#included-files)
-- [Installation (Users)](#installation-users)
-- [Installation (Developers / Build
-  Process)](#installation-developers--build-process)
-- [Version History](#version-history)
-- [Acknowledgements](#acknowledgements)
-- [Licensing](#licensing)
-- [Disclaimer](#disclaimer)
-- [Distribution](#distribution)
-- [Contact](#contact)
+-   [About the Project](#about-the-project)
+-   [Motivation & Scope](#motivation--scope)
+-   [Key Features](#key-features)
+-   [Usage Overview](#usage-overview)
+-   [Use in Academia](#use-in-academia)
+-   [Technology Stack](#technology-stack)
+-   [Application Architecture](#application-architecture)
+-   [Included Files](#included-files)
+-   [Installation (Users)](#installation-users)
+-   [Installation (Developers / Build Process)](#installation-developers--build-process)
+-   [Version History](#version-history)
+-   [Acknowledgements](#acknowledgements)
+-   [Licensing](#licensing)
+-   [Disclaimer](#disclaimer)
+-   [Distribution](#distribution)
+-   [Contact](#contact)
 
 ------------------------------------------------------------------------
 
 ## Motivation behind the project
 
-The current standard in academia for analysing peptide mass
-fingerprinting (PMF) data is the Matrix Science Mascot server. However,
-before submission, raw data must first be converted into peak lists of
-mass-to-charge ratio (m/z) values that are compatible with the Mascot
-PMF workflow. Typically, software such as mMass is used for this
-purpose, but many of these tools are not readily available on Apple
-devices.
+The current standard in academia for analysing peptide mass fingerprinting (PMF) data is the Matrix Science Mascot server. However, before submission, raw data must first be converted into peak lists of mass-to-charge ratio (m/z) values that are compatible with the Mascot PMF workflow. Typically, software such as mMass is used for this purpose, but many of these tools are not readily available on Apple devices.
 
-This R package aims to provide basic PMF data processing functionality
-in an accessible and platform-independent way, particularly for users
-working on Apple systems. While the package is currently best suited for
-simple PMF analyses, it may not yet be the optimal choice for highly
-complex or ambiguous datasets.
+This R package aims to provide basic PMF data processing functionality in an accessible and platform-independent way, particularly for users working on Apple systems. While the package is currently best suited for simple PMF analyses, it may not yet be the optimal choice for highly complex or ambiguous datasets.
 
-Nevertheless, this project represents an important first step toward
-broadening platform accessibility for PMF analysis and may be expanded
-with additional features in the future.
+Nevertheless, this project represents an important first step toward broadening platform accessibility for PMF analysis and may be expanded with additional features in the future.
 
 ------------------------------------------------------------------------
 
 ## Features
 
-- Preprocessing of MALDI spectra using `MALDIquant`
+-   Preprocessing of MALDI spectra using `MALDIquant`
 
-- Noise reduction, baseline correction, and intensity calibration
+-   Noise reduction, baseline correction, and intensity calibration
 
-- Adaptive peak detection based on signal-to-noise ratio
+-   Adaptive peak detection based on signal-to-noise ratio
 
-- Removal of common contaminants:
+-   Removal of common contaminants:
 
-  - Trypsin (planned: other restriction enzymes)
-  - Keratin
-  - Optional tags like GFP, RFP (planned: other common tags)
-  - User specified peaks like other tags or contaminants which can be
-    obtained using `msf_msdigest()`
+    -   Trypsin (planned: other restriction enzymes)
+    -   Keratin
+    -   Optional tags like GFP, RFP (planned: other common tags)
+    -   User specified peaks like other tags or contaminants which can be obtained using `msf_msdigest()`
 
-- Monoisotopic peak extraction
+-   Monoisotopic peak extraction
 
-- Visualization using `ggplot2`
+-   Visualization using `ggplot2`
 
-- Integration with external tools:
+-   Integration with external tools:
 
-  - Mascot (PMF search)
-  - MS-Fit (PMF search)
-  - MS-Digest (in silico protein digest and m/z peak calculation)
+    -   Mascoxt (PMF search)
+
+    -   MS-Fit (PMF search)
+
+    -   MS-Digest (in silico protein digest and m/z peak calculation)
+
+    [VideoDemo](https://youtu.be/nORgf16t9lM)
 
 ### Where features differ from MALDIquant built-in capabilities
 
-- Dynamic adjustment of peak detection using iterative tuning
-  - Automatic optimization of signal-to-noise ratio to achieve a target
-    number of detected peaks
-- Contaminant-aware filtering and peak exclusion
-  - Removal of known contaminant peaks (e.g., proteolytic fragments,
-    keratin, affinity tags) as well as user-defined exclusions
-- Automated database search submission (Mascot/MS-Fit)
-  - Automatted construction and submission of peptide mass fingerprint
-    queries via web form emulation
-- Integrated peptide digest pipeline with automatic query construction
-  (MS-Digest)
-  - Automatted construction and submission of peptide digestion queries
-    via web form emulation
+-   Dynamic adjustment of peak detection using iterative tuning
+    -   Automatic optimization of signal-to-noise ratio to achieve a target number of detected peaks
+-   Contaminant-aware filtering and peak exclusion
+    -   Removal of known contaminant peaks (e.g., proteolytic fragments, keratin, affinity tags) as well as user-defined exclusions
+-   Automated database search submission (Mascot/MS-Fit)
+    -   Automatted construction and submission of peptide mass fingerprint queries via web form emulation
+-   Integrated peptide digest pipeline with automatic query construction (MS-Digest)
+    -   Automatted construction and submission of peptide digestion queries via web form emulation
 
 ------------------------------------------------------------------------
 
@@ -259,17 +239,17 @@ The main processing pipeline:
 
 The function `msf_processing()` removes known contaminant peaks:
 
-- **Trypsin autolysis peaks**
+-   **Trypsin autolysis peaks**
 
-- **Keratin contamination**
+-   **Keratin contamination**
 
-- Tags
+-   Tags
 
-  - GFP tag
+    -   GFP tag
 
-  - RFP tag
+    -   RFP tag
 
-- Custom exclusion list
+-   Custom exclusion list
 
 Tolerance-based matching is used to identify contaminant peaks.
 
@@ -321,15 +301,14 @@ msf_msdigest(
 
 The main function `msf_processing` takes:
 
-- MS files:
-  - Tested on `msXML` file format
-    [example.mzXML](inst/extdata/example.mzXML)
-  - Also supported `msmzML` & `imzML`
+-   MS files:
+    -   Tested on `msXML` file format [example.mzXML](inst/extdata/example.mzXML)
+    -   Also supported `msmzML` & `imzML`
 
 Database search functions take:
 
-- Peaklist searches against databases
-  - Numeric vector from any source
+-   Peaklist searches against databases
+    -   Numeric vector from any source
 
 ``` r
 c(
@@ -349,44 +328,39 @@ c(
 
 The main function `msf_processing` returns:
 
-- Clean monoisotopic peaks
+-   Clean monoisotopic peaks
 
-  - Target protein peaks
+    -   Target protein peaks
 
-    ``` r
-    c(
-      909.487988195952, 924.537239357999, 1100.69825492272, 1122.67765717953,
-      1128.2313884941, 1138.65099138298, 1169.58360432486, 1183.56229951438, 
-      1295.66409038798, 1311.65393427144, 1331.70699847362, 1377.70333719367,
-      1393.69929612912, 1399.69294364312, 1411.7616927402, 1415.66206248727,
-      1450.78305528263, 1646.90824317882, 1662.89452290811, 1768.91735775239,
-      1810.92290814297, 1823.91341791192, 1839.92654612077, 1946.96565258623,
-      2225.09583098386, 3037.87500575276
-    )
-    ```
+        ``` r
+        c(
+          909.487988195952, 924.537239357999, 1100.69825492272, 1122.67765717953,
+          1128.2313884941, 1138.65099138298, 1169.58360432486, 1183.56229951438, 
+          1295.66409038798, 1311.65393427144, 1331.70699847362, 1377.70333719367,
+          1393.69929612912, 1399.69294364312, 1411.7616927402, 1415.66206248727,
+          1450.78305528263, 1646.90824317882, 1662.89452290811, 1768.91735775239,
+          1810.92290814297, 1823.91341791192, 1839.92654612077, 1946.96565258623,
+          2225.09583098386, 3037.87500575276
+        )
+        ```
 
-- Restriction enzyme autolysis peaks
+-   Restriction enzyme autolysis peaks
 
-- Keratin contamination peaks
+-   Keratin contamination peaks
 
-- Custom peaklist matches
+-   Custom peaklist matches
 
-- Multiple `ggplot2` visualizations
+-   Multiple `ggplot2` visualizations
 
-  - Raw spectrum ![Example figure](man/figures/raw_spectrum.png)
+    -   Raw spectrum ![Example figure](man/figures/raw_spectrum.png)
 
-  - Preprocessed spectrum ![Example
-    figure](man/figures/processed_spectrum.png)
+    -   Preprocessed spectrum ![Example figure](man/figures/processed_spectrum.png)
 
-  - Plot with detected monoisotopic and isotopic peaks for the target
-    protein ![Example figure](man/figures/peaks_spectrum.png)
+    -   Plot with detected monoisotopic and isotopic peaks for the target protein ![Example figure](man/figures/peaks_spectrum.png)
 
-  - Plot with detected monoisotopic peaks for the target protein
-    ![Example figure](man/figures/mono_peaks_spectrum.png)
+    -   Plot with detected monoisotopic peaks for the target protein ![Example figure](man/figures/mono_peaks_spectrum.png)
 
-  - Plot with detected monoisotopic peaks for the target protein and the
-    contaminants ![Example
-    figure](man/figures/mono_cont_peaks_spectrum.png)
+    -   Plot with detected monoisotopic peaks for the target protein and the contaminants ![Example figure](man/figures/mono_cont_peaks_spectrum.png)
 
 ``` r
 file <- system.file("extdata", "example.mzXML", package = "MSfingerprint")
@@ -401,9 +375,9 @@ str(result$monoisotopic_peaks)
 
 ## Dependencies
 
-- `MALDIquant`
-- `MALDIquantForeign`
-- `ggplot2`
+-   `MALDIquant`
+-   `MALDIquantForeign`
+-   `ggplot2`
 
 ------------------------------------------------------------------------
 
@@ -411,11 +385,10 @@ str(result$monoisotopic_peaks)
 
 Future improvements:
 
-- Complete input validation helpers `preprocessing_check_input()`
-  - Most of the important fields already are validated before server
-    submission
-- Unified pipeline function `msf_workflow()`
-  - Complete processing and database search pipeline
+-   Complete input validation helpers `preprocessing_check_input()`
+    -   Most of the important fields already are validated before server submission
+-   Unified pipeline function `msf_workflow()`
+    -   Complete processing and database search pipeline
 
 ------------------------------------------------------------------------
 
@@ -437,9 +410,7 @@ ORCID: 0009-0003-3561-7991
 
 ## Citation
 
-Müller, S. M. (2026). *MSfingerprint: Automated Mass Spectrometry
-Peptide Mass Fingerprint Analysis*. R package version 1.0.0,
-<https://github.com/SpikeMurphy/MSfingerprint>.
+Müller, S.M. (2026). MSfingerprint (Version 1.0.0) [R Package]. Available online: <https://github.com/SpikeMurphy/MSfingerprint/releases/tag/v1.0.0.> Source code: <https://github.com/SpikeMurphy/MSfingerprint.> DOI: <https://doi.org/10.5281/zenodo.19172316.>
 
 ------------------------------------------------------------------------
 
