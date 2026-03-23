@@ -15,10 +15,11 @@ msf_processing <- function (
     
     PLOTS = TRUE, 
     
-    TRANSFORM = "sqrt", 
-    SMOOTH = c("SavitzkyGolay", 10), 
-    BASELINE = c("SNIP", 100), 
-    CALIBRATE = "TIC",
+    TRANSFORM = list(method = "sqrt"), 
+    SMOOTH = list(method = "SavitzkyGolay", halfWindowSize = 10), 
+    BASELINE = list(method = "SNIP", iterations = 100), 
+    CALIBRATE = list(method ="TIC"),
+    NOISE = list(method="SuperSmoother"),
     
     TEST = TRUE
     ){
@@ -38,10 +39,17 @@ msf_processing <- function (
   }
   
   preprocessed_spectrum <- raw_spectrum |>
-    MALDIquant::transformIntensity(method = TRANSFORM) |> # Reduce dominance of very large peaks with square root scaling
-    MALDIquant::smoothIntensity(method = SMOOTH[1], halfWindowSize = as.numeric(SMOOTH[2])) |> # Reduce noise while preserving peak shape
-    MALDIquant::removeBaseline(method = BASELINE[1], iterations = as.numeric(BASELINE[2])) |> # Remove baseline with iterative clipping algorithm
-    MALDIquant::calibrateIntensity(method = CALIBRATE) # Calibrate with total ion current normalization
+    MALDIquant::transformIntensity(method = TRANSFORM$method) |> # Reduce dominance of very large peaks with square root scaling
+    MALDIquant::smoothIntensity(method = SMOOTH$method, halfWindowSize = SMOOTH$halfWindowSize) |> # Reduce noise while preserving peak shape
+    MALDIquant::removeBaseline(method = BASELINE$method, iterations = as.numeric(BASELINE$iterations)) |> # Remove baseline with iterative clipping algorithm
+    MALDIquant::calibrateIntensity(method = CALIBRATE$method) # Calibrate with total ion current normalization
+  
+  baseline <- MALDIquant::estimateBaseline(raw_spectrum[[1]], method = BASELINE$method, iterations = BASELINE$iterations)
+  
+  # not in use currently, could be added to plot, could be used to dynamically set starting SNR, however current iterative SNR change seems to work better
+  noise <- MALDIquant::estimateNoise(preprocessed_spectrum[[1]], method = NOISE$method)
+  # SNR <- MALDIquant::intensity(preprocessed_spectrum[[1]]) / noise
+  # average_SNR <- mean(SNR[, "intensity"], na.rm = TRUE)
   
   # processing
   ## initialize
@@ -387,6 +395,7 @@ msf_processing <- function (
   
   plot_raw <- ggplot2::ggplot(data = plot_raw_data, ggplot2::aes(x = mz, y =  intensity)) + 
     ggplot2::geom_line() +
+    ggplot2::geom_line(data = baseline, ggplot2::aes(x = mass, y = intensity), color = "red") +
     ggplot2::scale_y_continuous(limits = c(0, max(MALDIquant::intensity(raw_spectrum[[1]])))) +
     ggplot2::labs(
       x = "m/z",
@@ -400,6 +409,7 @@ msf_processing <- function (
 
   plot_preprocessed <- ggplot2::ggplot(data = plot_preprocessed_data, ggplot2::aes(x = mz, y =  intensity)) + 
     ggplot2::geom_line() +
+    ggplot2::geom_line(data = noise, ggplot2::aes(x = mass, y = intensity), color = "blue") +
     ggplot2::scale_y_continuous(limits = c(0, max(MALDIquant::intensity(preprocessed_spectrum[[1]])))) +
     ggplot2::labs(
       x = "m/z",
@@ -516,6 +526,26 @@ loading_animation <- function(t = 0.2){
   }
   Sys.sleep(t)
   cat("\n")
+}
+
+
+# =================================================== #
+# ===== ENTRY FUNCTIONS ============================= #
+# =================================================== #
+
+msf_processing_entry <- function(ENTRY) {
+  
+  file <- paste0("processing_", ENTRY, ".csv")
+  
+  path <- system.file("extdata", file, package = "MSfingerprint")
+  
+  if (path == "") {
+    stop(paste("Could not find", file, "in extdata/"))
+  }
+  
+  possible_entries <- read.csv(path)
+  
+  return(possible_entries)
 }
 
 

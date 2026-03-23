@@ -1,0 +1,5 @@
+BASELINE_METHOD, BASELINE_TYPICAL_SECOND_ARGUMENT
+SNIP, iterations = 100
+TopHat, halfWindowSize = 75 or 150
+ConvexHull, none
+median, none

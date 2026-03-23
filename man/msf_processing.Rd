@@ -25,10 +25,11 @@ msf_processing(
     
     PLOTS = TRUE, 
     
-    TRANSFORM = "sqrt", 
-    SMOOTH = c("SavitzkyGolay", 10), 
-    BASELINE = c("SNIP", 100), 
-    CALIBRATE = "TIC"
+    TRANSFORM = list(method = "sqrt"), 
+    SMOOTH = list(method = "SavitzkyGolay", halfWindowSize = 10), 
+    BASELINE = list(method = "SNIP", iterations = 100), 
+    CALIBRATE = list(method = "TIC"),
+    NOISE = list(method = "SuperSmoother")
 )
 }
 \arguments{
@@ -48,14 +49,15 @@ msf_processing(
   
   \item{PLOTS}{Logical. Whether to include plots in the returned list. The default argument is \code{TRUE}.}
   
-  \item{TRANSFORM}{Character string. Intensity transformation method applied to the spectrum. The default argument is \code{"sqrt"}.}
+  \item{TRANSFORM}{List. Intensity transformation parameters applied to the spectrum. The default method is \code{"sqrt"} with alternative being \code{"log"}, \code{"log2"} and \code{"log10"}.}
   
-  \item{SMOOTH}{Character vector. Smoothing method and associated parameter. The default argument is \code{c("SavitzkyGolay", 10)}.}
+  \item{SMOOTH}{List. Smoothing parameters applied to the spectrum. The default method is \code{"SavitzkyGolay"} with a default halfWindowSize of \code{10} with an alternative being \code{"MovingAverage"} with a default halfWindowSize of \code{2}}
   
-  \item{BASELINE}{Character vector. Baseline correction method and associated parameter. The default argument is \code{c("SNIP", 100)}.}
+  \item{BASELINE}{List. Baseline correction parameters applied to the spectrum. The default method is \code{"SNIP"} with alternatives being \code{"TopHat"}, \code{"ConvexHull"} and \code{"median"}.}
   
-  \item{CALIBRATE}{Character string. Calibration method applied to the spectrum. The default argument is \code{"TIC"}.}
-}
+  \item{CALIBRATE}{List. Calibration parameters applied to the spectrum. The default argument is \code{"TIC"} with alternatives being \code{"PQN"} and \code{"median"}.}
+  
+  \item{NOISE}{List. Noise determination parameters applied to the spectrum. The default argument is \code{"SuperSmoother"} with an alternative being \code{"MAD"}. The methode \code{"MAD"} generally generates a lover number for the noise.}
 \value{
 Returns a list of monoisotopic peaks with their mass to charge ratio (m/z) and 
 peak intensities fot the target protein and contaminants as well as optional plots:
@@ -118,9 +120,10 @@ msf_processing(
 
     PLOTS = TRUE,
     
-    TRANSFORM = "sqrt", 
-    SMOOTH = c("SavitzkyGolay", 10), 
-    BASELINE = c("SNIP", 100), 
-    CALIBRATE = "TIC"
+    TRANSFORM = list(method = "sqrt"), 
+    SMOOTH = list(method = "SavitzkyGolay", halfWindowSize = 10), 
+    BASELINE = list(method = "SNIP", iterations = 100), 
+    CALIBRATE = list(method ="TIC"),
+    NOISE = list(method="SuperSmoother")
 )
 }

@@ -63,7 +63,7 @@ msf_msfit(
   
   \item{SPECIES}{Character string. Taxonomic restriction for the search. The default argument is \code{"All"}. Run \code{msf_msfit_entries("SPECIES")} for a list of possible entries.}
   
-  \item{FRAME}{Integer. Reading frame for DNA translation. The default argument is \code{3}. Run \code{msf_msfit_entries("FRAME") for a list of possible entries.}}
+  \item{FRAME}{Integer. Reading frame for DNA translation. The default argument is \code{3}. Run \code{msf_msfit_entries("FRAME")} for a list of possible entries.}
   
   \item{AALIMIT}{Character string. Amino terminal amino acid limit. The default argument is \code{"NULL"}. Any positive integer with no leading zeros can be entered.}
 
@@ -101,9 +101,9 @@ msf_msfit(
   
   \item{MINPMATCH}{Integer. Minimum number of parent mass matches required. The default argument is \code{1}. Any positive integer with no leading zeros can be entered.}
   
-  \item{MAXMODS}{Integer. Maximum number of modifications per peptide. The default argument is \code{1}. Any positive integer with no leading zeros can be entered.}}
+  \item{MAXMODS}{Integer. Maximum number of modifications per peptide. The default argument is \code{1}. Any positive integer with no leading zeros can be entered.}
   
-  \item{MAXHITS}{Integer. Maximum number of hits returned. The default argument is \code{5}. Any positive integer with no leading zeros can be entered.}}
+  \item{MAXHITS}{Integer. Maximum number of hits returned. The default argument is \code{5}. Any positive integer with no leading zeros can be entered.}
   
   \item{GRAPH}{Integer (0/1). Whether to display graphical output. Chose between \code{0} for FALSE or \code{1} for TRUE. The default argument is \code{1}.}
   
@@ -111,7 +111,7 @@ msf_msfit(
   
   \item{MOWSEP}{Numeric. MOWSE probability threshold. The default argument is \code{0.4}.}
   
-  \item{INST}{Character string. Instrument type. The default argument is \code{"MALDI-TOFTOF"}. Run \code{msf_msfit_entries("INST")} for a list of possible entries.}}
+  \item{INST}{Character string. Instrument type. The default argument is \code{"MALDI-TOFTOF"}. Run \code{msf_msfit_entries("INST")} for a list of possible entries.}
   
   \item{FORMAT}{Character string. Input peak list format. The default argument is \code{"PP M/Z Charge"} with an alternative being \code{PP M/Z Intensity Charge}.}
 }

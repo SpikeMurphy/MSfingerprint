@@ -1,0 +1,5 @@
+TRANSFORM_INTENSITY
+sqrt
+log
+log2
+log10

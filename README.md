@@ -4,7 +4,7 @@
 
 <!-- badges: start -->
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.19172316.svg)](https://doi.org/10.5281/zenodo.19172316)
+[![](https://zenodo.org/badge/DOI/10.5281/zenodo.19172316.svg)](https://doi.org/10.5281/zenodo.19172316)
 
 <!-- badges: end -->
 
@@ -89,12 +89,23 @@ Nevertheless, this project represents an important first step toward broadening 
 
 ## Installation
 
-You can install the development version from GitHub:
+Prerequisite:
 
 ``` r
 install.packages("devtools")
 library("devtools")
+```
+
+You can install the most up to date development version from GitHub:
+
+``` r
 devtools::install_github("SpikeMurphy/MSfingerprint")
+```
+
+You can install the current release version from GitHub:
+
+``` r
+devtools::install_github("SpikeMurphy/MSfingerprint@v1.0.0")
 ```
 
 ------------------------------------------------------------------------
@@ -205,18 +216,32 @@ result <- msf_workflow(
   FILE = "~/dir/example.mzXML", 
   MASCOT = TRUE, 
   MASCOT_ARGS = list(), 
-  MSFIT = FALSE)
+  MSFIT = FALSE
+  )
 
 # MS-Fit Search
 result <- msf_workflow(
   FILE = "~/dir/example.mzXML", 
   MASCOT = FALSE, 
   MSFIT = TRUE, 
-  MSFIT_ARGS = list(), )
+  MSFIT_ARGS = list()
+  )
 
 # Dual Search
 result <- msf_workflow(FILE = "~/dir/example.mzXML", MASCOT = TRUE, MSFIT = TRUE)
 ```
+
+### Check possible entries
+
+``` r
+# Mascot Search Arguments
+msf_mascot_entry(ENTRY = ...)
+
+# MS-Fit Search Arguments
+msf_msfit_entry(ENTRY = ...)
+```
+
+Pass in the argument from `msf_mascot` or `msf_msfit`. The return value is a dataframe of possible entries.
 
 ------------------------------------------------------------------------
 
@@ -293,8 +318,11 @@ msf_msdigest(
 |------------------------------------|------------------------------------|
 | `msf_workflow()` | Full processing and database search pipeline |
 | `msf_processing()` | Main processing and peak detection pipeline |
+| `msf_processing_entry()` | Check for possible entries to `msf_processing()` |
 | `msf_mascot()` | Protein identification *Matrix Science* **Mascot** Server |
+| `msf_mascot_entry()` | Check for possible entries to `msf_mascot()` |
 | `msf_msfit()` | Protein identification via *Protein Prospector* **MS-Fit** Server |
+| `msf_msfit_entry()` | Check for possible entries to `msf_msfit()` |
 | `msf_msdigest()` | Perform in silico digestion and peaklist calculation |
 
 ------------------------------------------------------------------------

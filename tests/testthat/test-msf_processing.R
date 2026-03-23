@@ -1,3 +1,44 @@
+# =================================================== #
+# ===== MAIN FUNCTION =============================== #
+# =================================================== #
+
+check_that("`msf_processing` works as intended.", {
+  
+})
+
+
+# =================================================== #
+# ===== HELPER FUNCTIONS ============================ #
+# =================================================== #
+
+
+
+
+# =================================================== #
+# ===== ENTRY FUNCTIONS ============================= #
+# =================================================== #
+
+test_that("`msf_processing_entry` works as intended.", {
+  expect_no_warning(msf_processing_entry("BASELINE"))
+  expect_no_warning(msf_processing_entry("CALIBRATE"))
+  expect_no_warning(msf_processing_entry("CLEAVAGE"))
+  expect_no_warning(msf_processing_entry("NOISE"))
+  expect_no_warning(msf_processing_entry("SMOOTH"))
+  expect_no_warning(msf_processing_entry("TRANSFORM"))
+  
+  expect_no_error(msf_processing_entry("BASELINE"))
+  expect_no_error(msf_processing_entry("CALIBRATE"))
+  expect_no_error(msf_processing_entry("CLEAVAGE"))
+  expect_no_error(msf_processing_entry("NOISE"))
+  expect_no_error(msf_processing_entry("SMOOTH"))
+  expect_no_error(msf_processing_entry("TRANSFORM"))
+})
+
+
+# =================================================== #
+# ===== TESTING FUNCTIONS =========================== #
+# =================================================== #
+
 test_that("`processing_check_file` works as intended.", {
   # create correct temp file
   tmp_dir <- tempdir()
