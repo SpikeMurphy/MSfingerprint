@@ -4,6 +4,8 @@
 
 <!-- badges: start -->
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.19172316.svg)](https://doi.org/10.5281/zenodo.19172316)
+
 <!-- badges: end -->
 
 **MSfingerprint** provides an automated workflow for preprocessing MALDI mass spectrometry data, detecting and cleaning peaks, removing contaminants, and submitting peptide mass fingerprinting (PMF) data to external identification tools.
@@ -288,7 +290,7 @@ msf_msdigest(
 ## Main Functions
 
 | Function | Description |
-|----|----|
+|------------------------------------|------------------------------------|
 | `msf_workflow()` | Full processing and database search pipeline |
 | `msf_processing()` | Main processing and peak detection pipeline |
 | `msf_mascot()` | Protein identification *Matrix Science* **Mascot** Server |
