@@ -1,7 +1,16 @@
 export(msf_workflow)
 
+
 export(msf_processing)
 
+
+
+
 export(msf_mascot)
+export(msf_mascot_entry)
+
 export(msf_msfit)
+export(msf_msfit_entry)
+
 export(msf_msdigest)
+# ...

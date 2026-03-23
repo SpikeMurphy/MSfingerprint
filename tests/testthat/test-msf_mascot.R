@@ -1,3 +1,7 @@
+# =================================================== #
+# ===== MAIN FUNCTION =============================== #
+# =================================================== #
+
 test_that("`search_mascot` works as intended.", {
   # TODO
   expect_no_warning(msf_mascot(PEAKS = c(1, 2, 3), USERNAME = "Firstname Middlename Lastname", USEREMAIL = "mail@example.com", TEST = TRUE))
@@ -5,7 +9,23 @@ test_that("`search_mascot` works as intended.", {
 })
 
 
+# =================================================== #
+# ===== HELPER FUNCTIONS ============================ #
+# =================================================== #
 
+
+
+
+# =================================================== #
+# ===== ENTRY FUNCTIONS ============================= #
+# =================================================== #
+
+
+
+
+# =================================================== #
+# ===== TESTING FUNCTIONS =========================== #
+# =================================================== #
 
 test_that("`mascot_check_peaks` works as intended.", {
   expect_no_warning(mascot_check_peaks(PEAKS = c(1,2,3)))

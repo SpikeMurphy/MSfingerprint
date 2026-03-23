@@ -1,4 +1,6 @@
 # TODO: go through website HTML and orter arguments and local html
+# TODO: allow for numbers both integers and strings as args (all form inputs are strings)
+# TODO: delete marked (TODO) vector after testing
 
 # =================================================== #
 # ===== MAIN FUNCTION =============================== #
@@ -10,10 +12,10 @@ msf_mascot <- function(
     USERNAME,
     USEREMAIL,
     
-    SEARCH = "PMF",
-    FORMVER = 1.01,
+    TITLE = "",
     
     DATABASE = "SwissProt",
+    TAXONOMY = "All entries",
     
     CLEAVAGE = "Trypsin", 
     MISSEDC = 1,
@@ -84,10 +86,12 @@ msf_mascot <- function(
     <input type="hidden" name="USERNAME" value="', USERNAME, '">
     <input type="hidden" name="USEREMAIL" value="', USEREMAIL, '">
     
-    <input type="hidden" name="SEARCH" value="', SEARCH, '">
-    <input type="hidden" name="FORMVER" value="', FORMVER, '">
+    <input type="hidden" name="SEARCH" value="PMF">
+    <input type="hidden" name="FORMVER" value="1.01">
+    <input type="hidden" name="FORMVER" value="COM">
     
     <input type="hidden" name="DB" value="', DATABASE, '">
+    <input type="hidden" name="TAXONOMY" value="', TAXONOMY, '">
     
     <input type="hidden" name="CLE" value="', CLEAVAGE, '">
     <input type="hidden" name="PFA" value="', MISSEDC, '">
@@ -138,6 +142,26 @@ loading_animation <- function(t = 0.2){
 
 
 # =================================================== #
+# ===== ENTRY FUNCTIONS ============================= #
+# =================================================== #
+
+msf_mascot_entry <- function(ENTRY) {
+
+  file <- paste0("mascot_", ENTRY, ".csv")
+  
+  path <- system.file("extdata", file, package = "MSfingerprint")
+  
+  if (path == "") {
+    stop(paste("Could not find", file, "in extdata/"))
+  }
+  
+  possible_entries <- read.csv(path)
+  
+  return(possible_entries)
+}
+
+
+# =================================================== #
 # ===== TESTING FUNCTIONS =========================== #
 # =================================================== #
 
@@ -161,7 +185,7 @@ mascot_check_auth <- function(USERNAME, USEREMAIL){
 }
 
 
-mascot_check_database <- function(DATABASE){
+mascot_check_database <- function(DATABASE, TAXONOMY){
   databases <- c("Fungi_EST", "Human_EST", "Invertebrates_EST", "Mammals_EST", 
                  "Mus_EST", "Plants_EST", "Prokaryotes_EST", "Rodents_EST", 
                  "Vertebrates_EST", "contaminants", "cRAP", "SwissProt", 
@@ -181,6 +205,9 @@ mascot_check_database <- function(DATABASE){
   }else if (!(DATABASE %in% databases)) {
     stop("Argument `DATABASE` contains unexpectet database.")
   }
+  
+  
+  # TODO: TAXONOMY
 }
 
 
@@ -212,8 +239,8 @@ mascot_check_mods <- function(CONSTMODS, VARMODS){
 mascot_check_tolerance <- function(MASS, CHARGE, TOL, TOLU){
   if (MASS != "Monoisotopic"){
     stop("Argument `MASS` should be 'Monoisotopic'.")
-  } else if (CHARGE != "1+") {
-    stop("Argument `CHARGE` should be '1+'.")
+  } else if (!(CHARGE %in% c("1+", "Mr", "1-"))) {
+    stop("Argument `CHARGE` should be '1+', 'Mr' or '1-'.")
   } else if (length(TOL) != 1){
     stop("Argument `TOL` should contains one floating point value.")
   } else if (!is.numeric(TOL)) {

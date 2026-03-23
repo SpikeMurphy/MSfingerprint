@@ -1,0 +1,66 @@
+RESTRICTION_ENZYMES
+Trypsin
+TrypsinPro
+SlymotrypsinFYWKR
+Chymotrypsin
+Chymotrypsin FYW
+ChymotrypsinFWYMEDLN
+V8 DE
+V8 E
+Lys-C
+Lys-C-Pro
+Lys-N
+Arg-C
+Asp-N
+Asp-C
+DE-N
+CNBr
+Pepsin(porcine gastric)
+Glu-C
+Tyr-C
+Thermolysin
+Elastase
+a-Lytic Protease (aLP)
+Full Protein
+Pro-C
+Pro-N
+Proteinase K
+Rhizopuspepsin
+Cys-N
+KR-N
+Hydroxylamine
+CNBr/Trypsin
+CNBr/V8 DE
+CNBr/V8 E
+CNBr/Lys-C
+CNBr/Asp-N
+CNBr/Asp-C
+CNBr/Arg-C
+CNBr/Trypsin/V8 DE
+CNBr/Trypsin/V8 E
+CNBr/Arg-C/V8 E
+CNBr/Lys-C/V8 E
+Trypsin/Asp-N
+Trypsin/DE-N
+Trypsin/V8 DE
+Trypsin/V8 E
+Trypsin/Glu-C
+Trypsin/Chymotrypsin
+Trypsin/Pepsin(porcine gastric)
+Chymotrypsin/Arg-C
+Lys-C/Trypsin
+Lys-C/V8 DE
+Lys-C/V8 E
+Lys-C/Asp-N
+Lys-C/DE-N
+Lys-C/Glu-C
+V8 DE/Chymotrypsin
+Arg-C/V8 E
+Glu-C/Asp-N
+Glu-C/Chymotrypsin
+DE-N/Cys-N
+Asp-N/Asp-C
+Asp-C/Cys-N
+Lys-C/Lys-N
+Trypsin/KR-N
+Trypsin/Hydroxylamine

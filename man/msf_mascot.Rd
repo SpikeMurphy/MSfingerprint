@@ -17,13 +17,13 @@ msf_mascot(
     USERNAME = "Firstname Middlename Lastname",
     USEREMAIL = "example@mail.test",
 
-    SEARCH = "PMF",
-    FORMVER = 1.01,
+    TITLE = "",
 
     DATABASE = "SwissProt",
+    TAXONOMY = "All entries",
 
     CLEAVAGE = "Trypsin",
-    PFA = 1,
+    MISSEDC = 1,
 
     CONSTMODS = NULL,
     VARMODS = "Oxidation (M)",
@@ -39,26 +39,26 @@ msf_mascot(
 }
 \arguments{
   \item{PEAKS}{Numeric vector. Mass-to-charge (m/z) values representing the peak list used for the peptide mass fingerprint search.}
-  
+
   \item{USERNAME}{Character string. Name of the user submitting the Mascot search.}
   \item{USEREMAIL}{Character string. Valid email address required by the Mascot server. May need to be confirmed upon first use.}
   
-  \item{SEARCH}{Character string. Title of the search. The default argument is \code{"PMF"}.}
-  \item{FORMVER}{Numeric. Version of the Mascot HTML form specification to use.}
+  \item{TITLE}{Character string. Name of your search. Appears at the top of the Mascot results page. Can be left blank.}
   
-  \item{DATABASE}{Character string. Protein sequence database to search against. The default argument is \code{"SwissProt"}.}
+  \item{DATABASE}{Character string. Protein sequence database to search against. The default argument is \code{"SwissProt"}. For a list of possible entries try running \code{msf_mascot_entry("DATABASE")}.}
+  \item{TAXONOMY}{Character string. Taxonomy to which to restrict the search. The default argument is \code{"All entries"}. For a list of possible entries try running \code{msf_mascot_entry("TAXONOMY")}.}
   
-  \item{CLEAVAGE}{Character string. Enzyme used for protein digestion. The default argument is \code{"Trypsin"}.}
-  \item{PFA}{Integer. Number of allowed missed cleavages during enzymatic digestion. The default argument is \code{1}.}
+  \item{CLEAVAGE}{Character string. Enzyme used for protein digestion. The default argument is \code{"Trypsin"}. For a list of possible entries try running \code{msf_mascot_entry("CLEAVAGE")}.}
+  \item{MISSEDC}{Integer. Number of allowed missed cleavages during enzymatic digestion. The default argument is \code{1}. Possible entries are \code{0} through \code{9}.}
   
-  \item{CONSTMODS}{Character string. Fixed modifications. The default argument is \code{"NULL"}.}
-  \item{VARMODS}{Character string. Variable modifications. The default argument is \code{"Oxidation (M)"}.}
+  \item{CONSTMODS}{Character string. Fixed modifications. The default argument is \code{"NULL"}. For a list of possible entries try running \code{msf_mascot_entry("CONSTMODS")} or for a short list of tylical mods \code{msf_mascot_entry("TYPICALCONSTMODS")}.}
+  \item{VARMODS}{Character string. Variable modifications. The default argument is \code{"Oxidation (M)"}. For a list of possible entries try running \code{msf_mascot_entry("VARMODS")} or for a short list of tylical mods \code{msf_mascot_entry("TYPICALVARMODS")}.}
     
-  \item{TOL}{Numeric. Peptide mass tolerance value.}
-  \item{TOLU}{Character string. Units for mass tolerance. The default argument is \code{"Da"} for Dalton with alternatives being \code{"ppm"} for parts per million, \code{"mmu"} for millimass unit, where 1 mmu = 0.001 Da, or \code{"\%"}.}
+  \item{TOL}{Numeric. Peptide mass tolerance value. The default argument is \code{0.3}.  Any positive integer can be entered with the maximum depending on the chosen unit (10 Da, 10000 mmu, 1000 ppm, 1 \%).}}
+  \item{TOLU}{Character string. Units for mass tolerance. The default argument is \code{"Da"} for Dalton. For a list of possible entries try running \code{msf_mascot_entry("TOLU")}.}
         
   \item{MASS}{Character string. Type of mass values used. The default argument is \code{"Monoisotopic"} and should not be changed due to the current lack of alternatives.}
-  \item{CHARGE}{Character string. Charge state of the ions. The default argument is \code{"1+"} and should not be changed due to the current lack of alternatives.}
+  \item{CHARGE}{Character string. Charge state of the ions. The default argument is \code{"1+"} with alternatives being \code{"Mr"} or \code{"1-"}.}
   
   \item{REPORT}{Character string. Number of results shown. The default argument is \code{"AUTO"}. The amount of results can still be changed afterwards.}
 }
@@ -121,6 +121,8 @@ msf_mascot(
     USERNAME = "Firstname Middlename Lastname",
     USEREMAIL = "example@mail.test",
 
+    TITLE = "Human Serum Albumin",
+
     SEARCH = "PMF",
     FORMVER = 1.01,
 
@@ -129,7 +131,6 @@ msf_mascot(
     CLEAVAGE = "Trypsin",
     PFA = 1,
 
-    CONSTMODS = "",
     VARMODS = "Oxidation (M)",
 
     TOL = 0.3,
@@ -138,7 +139,7 @@ msf_mascot(
     MASS = "Monoisotopic",
     CHARGE = "1+",
 
-    REPORT = "AUTO"
+    REPORT = "5"
 )
 }
 }

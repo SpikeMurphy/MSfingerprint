@@ -59,51 +59,51 @@ msf_msfit(
   
   \item{SEQUENCE}{Character string. Optional protein or nucleotide sequence to restrict the search. The default argument is \code{"NULL"}.}
   
-  \item{DATABASE}{Character string. Character string. Protein sequence database to search against. The default argument is \code{"SwissProt.2025.02.26"}.}
+  \item{DATABASE}{Character string. Character string. Protein sequence database to search against. The default argument is \code{"SwissProt.2025.02.26"}. Run \code{msf_msfit_entries("DATABASE")} for a list of possible entries.}
   
-  \item{SPECIES}{Character string. Taxonomic restriction for the search. The default argument is \code{"All"}.}
+  \item{SPECIES}{Character string. Taxonomic restriction for the search. The default argument is \code{"All"}. Run \code{msf_msfit_entries("SPECIES")} for a list of possible entries.}
   
-  \item{FRAME}{Integer. Reading frame for DNA translation. The default argument is \code{3}.}
+  \item{FRAME}{Integer. Reading frame for DNA translation. The default argument is \code{3}. Run \code{msf_msfit_entries("FRAME") for a list of possible entries.}}
   
-  \item{AALIMIT}{Character string. Amino terminal amino acid limit. The default argument is \code{"NULL"}.}
+  \item{AALIMIT}{Character string. Amino terminal amino acid limit. The default argument is \code{"NULL"}. Any positive integer with no leading zeros can be entered.}
 
   \item{OUTPUT}{Character string. Output format. The default argument is \code{"HTML"} with an alternative being \code{"XML"}.}
   
-  \item{SORT}{Character string. Sorting method for results. The default argument is \code{"Score Sort"}.}
+  \item{SORT}{Character string. Sorting method for results. The default argument is \code{"Score Sort"} with alternatives being \code{"Mw"} for molecular weight and \code{pI} for isoelectric point.}
   
   \item{HOMOLOGUES}{Character string. Homologues to report.The default argument is \code{"Interesting"} with alternatives being \code{"All"} or \code{"None"}.}
   
-  \item{LOWMASS}{Numeric. Lower molecular weight limit for proteins.The default argument is \code{1000}.}
+  \item{LOWMASS}{Numeric. Lower molecular weight limit for proteins.The default argument is \code{1000}. Any positive integer of floating point value can be entered.}
   
-  \item{HIGHMASS}{Numeric. Upper molecular weight limit for proteins. The default argument is \code{125000}.}
+  \item{HIGHMASS}{Numeric. Upper molecular weight limit for proteins. The default argument is \code{125000}. Any positive integer of floating point value can be entered.}
   
-  \item{LOWPI}{Numeric. Lower isoelectric point (pI) limit. The default argument is \code{3}.}
+  \item{LOWPI}{Numeric. Lower isoelectric point (pI) limit. The default argument is \code{3}. Any positive integer of floating point value can be entered.}
   
-  \item{HIGHPI}{Numeric. Upper isoelectric point (pI) limit. The default argument is \code{10}.}
+  \item{HIGHPI}{Numeric. Upper isoelectric point (pI) limit. The default argument is \code{10}. Any positive integer of floating point value can be entered.}
   
   \item{RANGEPI}{Character string. Flag to enable pI range filtering. The default argument is \code{"1"}.}
   
-  \item{CLEAVAGE}{Character string. Enzyme used for protein digestion. The default argument is \code{"Trypsin"}.}
+  \item{CLEAVAGE}{Character string. Enzyme used for protein digestion. The default argument is \code{"Trypsin"}. Run \code{msf_msfit_entries("CLEAVAGE")} for a list of possible entries.}
   
-  \item{MISSEDC}{Integer. Number of allowed missed cleavages. The default argument is \code{1}.}
+  \item{MISSEDC}{Integer. Number of allowed missed cleavages. The default argument is \code{1}. Any positive integer with no leading zeros can be entered.}
   
-  \item{CONSTMODS}{Character string. Fixed modifications. The default argument is \code{"NULL"}.}
+  \item{CONSTMODS}{Character string. Fixed modifications. The default argument is \code{"NULL"}. Run \code{msf_msfit_entries("CONSTMODS")} for a list of possible entries.}
   
-  \item{VARMODS}{Character string. Variable modifications. The default argument is \code{"Oxidation of M"}.}
+  \item{VARMODS}{Character string. Variable modifications. The default argument is \code{"Oxidation of M"}. Run \code{msf_msfit_entries("VARMODS")} for a list of possible entries.}
 
-  \item{MASS}{Character string. Mass type used. The default argument is \code{"monoisotopic"} referring to the first peak of an isotopic distribution.}
+  \item{MASS}{Character string. Mass type used. The default argument is \code{"monoisotopic"} referring to the first peak of an isotopic distribution with an alternative being \code{"anerage"}.}
   
   \item{TOL}{Numeric. Peptide mass tolerance value. The default argument is \code{0.3}.}
   
-  \item{TOLU}{Character string. Units for mass tolerance. The default argument is \code{"Da"} for Dalton with an alternative being \code{"ppm"} for parts per million.}
+  \item{TOLU}{Character string. Units for mass tolerance. The default argument is \code{"Da"} for Dalton with an alternative being \code{"ppm"} for parts per million. Run \code{msf_msfit_entries("TOLU")} for a list of possible entries.}
 
-  \item{MINMATCH}{Integer. Minimum number of peptide matches required. The default argument is \code{4}.}
+  \item{MINMATCH}{Integer. Minimum number of peptide matches required. The default argument is \code{4}. Any positive integer with no leading zeros can be entered that is not zero.}
   
-  \item{MINPMATCH}{Integer. Minimum number of parent mass matches required. The default argument is \code{1}.}
+  \item{MINPMATCH}{Integer. Minimum number of parent mass matches required. The default argument is \code{1}. Any positive integer with no leading zeros can be entered.}
   
-  \item{MAXMODS}{Integer. Maximum number of modifications per peptide. The default argument is \code{1}.}
+  \item{MAXMODS}{Integer. Maximum number of modifications per peptide. The default argument is \code{1}. Any positive integer with no leading zeros can be entered.}}
   
-  \item{MAXHITS}{Integer. Maximum number of hits returned. The default argument is \code{5}.}
+  \item{MAXHITS}{Integer. Maximum number of hits returned. The default argument is \code{5}. Any positive integer with no leading zeros can be entered.}}
   
   \item{GRAPH}{Integer (0/1). Whether to display graphical output. Chose between \code{0} for FALSE or \code{1} for TRUE. The default argument is \code{1}.}
   
@@ -111,9 +111,9 @@ msf_msfit(
   
   \item{MOWSEP}{Numeric. MOWSE probability threshold. The default argument is \code{0.4}.}
   
-  \item{INST}{Character string. Instrument type. The default argument is \code{"MALDI-TOFTOF"}.}
+  \item{INST}{Character string. Instrument type. The default argument is \code{"MALDI-TOFTOF"}. Run \code{msf_msfit_entries("INST")} for a list of possible entries.}}
   
-  \item{FORMAT}{Character string. Input peak list format. The default argument is \code{"PP M/Z Charge"}.}
+  \item{FORMAT}{Character string. Input peak list format. The default argument is \code{"PP M/Z Charge"} with an alternative being \code{PP M/Z Intensity Charge}.}
 }
 \value{
 No return value. As a side effect, the function opens the user's default browser 

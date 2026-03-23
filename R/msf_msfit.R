@@ -1,4 +1,5 @@
 # TODO: go through website HTML and orter arguments and local html
+# TODO: allow for numbers both integers and strings as args (all form inputs are strings)
 
 # =================================================== #
 # ===== MAIN FUNCTION =============================== #
@@ -159,7 +160,7 @@ msf_msfit <- function(
     
     <input type="hidden" name="output_filename" value="results">
     
-    <textarea name="user_protein_sequence" rows="6" cols="70">', SEQUENCE, '</textarea>
+    <textarea name="user_protein_sequence">', SEQUENCE, '</textarea>
     <textarea name="data">', PEAKS, '</textarea>
     
     </form>
@@ -190,6 +191,26 @@ loading_animation <- function(t = 0.2){
   }
   Sys.sleep(t)
   cat("\n")
+}
+
+
+# =================================================== #
+# ===== ENTRY FUNCTIONS ============================= #
+# =================================================== #
+
+msf_msfit_entry <- function(ENTRY) {
+
+  file <- paste0("msfit_", ENTRY, ".csv")
+  
+  path <- system.file("extdata", file, package = "MSfingerprint")
+  
+  if (path == "") {
+    stop(paste("Could not find", file, "in extdata/"))
+  }
+  
+  possible_entries <- read.csv(path)
+  
+  return(possible_entries)
 }
 
 

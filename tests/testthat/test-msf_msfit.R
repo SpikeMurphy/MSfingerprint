@@ -1,3 +1,7 @@
+# =================================================== #
+# ===== MAIN FUNCTION =============================== #
+# =================================================== #
+
 test_that("`search_msfit` works as intended.", {
   # TODO
   expect_no_warning(msf_msfit(PEAKS = c(1, 2, 3), TEST = TRUE))
@@ -5,7 +9,53 @@ test_that("`search_msfit` works as intended.", {
 })
 
 
+# =================================================== #
+# ===== HELPER FUNCTIONS ============================ #
+# =================================================== #
 
+
+
+
+# =================================================== #
+# ===== ENTRY FUNCTIONS ============================= #
+# =================================================== #
+
+test_that("`msf_msfit_entry` works as intended.", {
+  expect_no_warning(msf_msfit_entry("CLEAVAGE"))
+  expect_no_warning(msf_msfit_entry("CONSTMODS"))
+  expect_no_warning(msf_msfit_entry("DATABASE"))
+  expect_no_warning(msf_msfit_entry("FORMAT"))
+  expect_no_warning(msf_msfit_entry("FRAME"))
+  expect_no_warning(msf_msfit_entry("HOMOLOGUES"))
+  expect_no_warning(msf_msfit_entry("INST"))
+  expect_no_warning(msf_msfit_entry("MASS"))
+  expect_no_warning(msf_msfit_entry("OUTPUT"))
+  expect_no_warning(msf_msfit_entry("SEQUENCE"))
+  expect_no_warning(msf_msfit_entry("SORT"))
+  expect_no_warning(msf_msfit_entry("SPECIES"))
+  expect_no_warning(msf_msfit_entry("TOLU"))
+  expect_no_warning(msf_msfit_entry("VARMODS"))
+  
+  expect_no_error(msf_msfit_entry("CLEAVAGE"))
+  expect_no_error(msf_msfit_entry("CONSTMODS"))
+  expect_no_error(msf_msfit_entry("DATABASE"))
+  expect_no_error(msf_msfit_entry("FORMAT"))
+  expect_no_error(msf_msfit_entry("FRAME"))
+  expect_no_error(msf_msfit_entry("HOMOLOGUES"))
+  expect_no_error(msf_msfit_entry("INST"))
+  expect_no_error(msf_msfit_entry("MASS"))
+  expect_no_error(msf_msfit_entry("OUTPUT"))
+  expect_no_error(msf_msfit_entry("SEQUENCE"))
+  expect_no_error(msf_msfit_entry("SORT"))
+  expect_no_error(msf_msfit_entry("SPECIES"))
+  expect_no_error(msf_msfit_entry("TOLU"))
+  expect_no_error(msf_msfit_entry("VARMODS"))
+})
+
+
+# =================================================== #
+# ===== TESTING FUNCTIONS =========================== #
+# =================================================== #
 
 test_that("`msfit_check_peaks` works as intended.", {
   expect_no_warning(msfit_check_peaks(PEAKS = c(1,2,3)))
